@@ -33,9 +33,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ButtonInstallAll = new System.Windows.Forms.Button();
             this.ButtonInstallSelected = new System.Windows.Forms.Button();
+            this.PictureLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.AppView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // AppView
@@ -54,7 +56,7 @@
             this.AppView.RowHeadersVisible = false;
             this.AppView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.AppView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.AppView.Size = new System.Drawing.Size(854, 241);
+            this.AppView.Size = new System.Drawing.Size(854, 298);
             this.AppView.TabIndex = 0;
             // 
             // groupBox1
@@ -63,9 +65,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.AppView);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(9, 118);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(860, 265);
+            this.groupBox1.Size = new System.Drawing.Size(860, 322);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Apps";
@@ -76,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.ButtonInstallAll);
             this.groupBox2.Controls.Add(this.ButtonInstallSelected);
-            this.groupBox2.Location = new System.Drawing.Point(15, 283);
+            this.groupBox2.Location = new System.Drawing.Point(12, 446);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(854, 66);
             this.groupBox2.TabIndex = 2;
@@ -101,11 +103,25 @@
             this.ButtonInstallSelected.Text = "Install selected";
             this.ButtonInstallSelected.UseVisualStyleBackColor = true;
             // 
+            // PictureLogo
+            // 
+            this.PictureLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PictureLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureLogo.ErrorImage = null;
+            this.PictureLogo.InitialImage = null;
+            this.PictureLogo.Location = new System.Drawing.Point(12, 12);
+            this.PictureLogo.Name = "PictureLogo";
+            this.PictureLogo.Size = new System.Drawing.Size(860, 100);
+            this.PictureLogo.TabIndex = 3;
+            this.PictureLogo.TabStop = false;
+            // 
             // AppList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 361);
+            this.ClientSize = new System.Drawing.Size(884, 524);
+            this.Controls.Add(this.PictureLogo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -119,6 +135,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AppView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -130,6 +147,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button ButtonInstallAll;
         private System.Windows.Forms.Button ButtonInstallSelected;
+        private System.Windows.Forms.PictureBox PictureLogo;
     }
 }
 

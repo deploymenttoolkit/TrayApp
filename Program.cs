@@ -10,10 +10,6 @@ namespace DeploymentToolkit.TrayApp
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-
         public static AppList AppList;
         public static NotifyIcon TrayIcon;
 
@@ -51,7 +47,7 @@ namespace DeploymentToolkit.TrayApp
 
             try
             {
-                Logging.LogManager.Initialize();
+                Logging.LogManager.Initialize("Tray");
             }
             catch(Exception ex)
             {
