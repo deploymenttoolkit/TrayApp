@@ -58,10 +58,19 @@
     <Compile Include="AppList.Designer.cs">
       <DependentUpon>AppList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CloseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CloseApplication.Designer.cs">
+      <DependentUpon>CloseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AppList.resx">
       <DependentUpon>AppList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CloseApplication.resx">
+      <DependentUpon>CloseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +95,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DeploymentToolkit\DeploymentToolkit.Messaging\DeploymentToolkit.Messaging.csproj">
+      <Project>{65AC59C5-F17A-4F96-97B2-B0ECB4304C3B}</Project>
+      <Name>DeploymentToolkit.Messaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DeploymentToolkit\DeploymentToolkit.Modals\DeploymentToolkit.Modals.csproj">
       <Project>{ec3fedb7-4fc0-4dcf-a08f-f1de2dc49e00}</Project>
       <Name>DeploymentToolkit.Modals</Name>

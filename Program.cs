@@ -1,4 +1,7 @@
-﻿using NLog;
+﻿using DeploymentToolkit.Messaging;
+using DeploymentToolkit.Messaging.Events;
+using DeploymentToolkit.Messaging.Messages;
+using NLog;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -10,10 +13,13 @@ namespace DeploymentToolkit.TrayApp
 {
     static class Program
     {
-        public static AppList AppList;
+        public static AppList FormAppList;
+        public static CloseApplication FormCloseApplication;
+
         public static NotifyIcon TrayIcon;
 
-        public static MenuItem ToggleVisibilityMenuItem;
+        public static MenuItem MenuItemExit;
+        public static MenuItem MenuItemToggleVisibility;
 
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -39,6 +45,8 @@ namespace DeploymentToolkit.TrayApp
             }
         }
 
+        private static PipeServer _pipeServer;
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -60,7 +68,7 @@ namespace DeploymentToolkit.TrayApp
             _logger.Info($"{Namespace} v{Version} initializing...");
 
             _logger.Trace("Creating AppList...");
-            AppList = new AppList();
+            FormAppList = new AppList();
 
             _logger.Trace("Creating TrayIcon...");
             TrayIcon = new NotifyIcon
@@ -73,26 +81,30 @@ namespace DeploymentToolkit.TrayApp
             var contextMenu = new ContextMenu();
 
             _logger.Trace("Creating MenuItem...");
-            ToggleVisibilityMenuItem = new MenuItem
+            MenuItemToggleVisibility = new MenuItem
             {
                 Index = 0,
                 Text = "Show"
             };
-            ToggleVisibilityMenuItem.Click += ToggleTrayAppClicked;
-            contextMenu.MenuItems.Add(ToggleVisibilityMenuItem);
+            MenuItemToggleVisibility.Click += ToggleTrayAppClicked;
+            contextMenu.MenuItems.Add(MenuItemToggleVisibility);
 
             _logger.Trace("Creating MenuItem...");
-            var item = new MenuItem
+            MenuItemExit = new MenuItem
             {
                 Index = 1,
                 Text = "Close"
             };
-            item.Click += CloseTrayAppClicked;
-            contextMenu.MenuItems.Add(item);
+            MenuItemExit.Click += CloseTrayAppClicked;
+            contextMenu.MenuItems.Add(MenuItemExit);
 
             _logger.Trace("Finishing TrayIcon...");
             TrayIcon.ContextMenu = contextMenu;
             TrayIcon.Visible = true;
+
+            _logger.Trace("Creating PipeServer...");
+            _pipeServer = new PipeServer(TrayIcon);
+            _pipeServer.OnNewMessage += OnNewMessage;
 
             _logger.Trace("Checking commandline arguments...");
             if (args.Any(a => a.ToLower() == "--startup"))
@@ -103,7 +115,32 @@ namespace DeploymentToolkit.TrayApp
             else
             {
                 _logger.Info("No valid commandline detected. Executing normal start");
-                Application.Run(AppList);
+                Application.Run(FormAppList);
+            }
+        }
+
+        private static void OnNewMessage(object sender, NewMessageEventArgs e)
+        {
+            // You are not in the Main form thread here !!!
+            
+            switch(e.MessageId)
+            {
+                case MessageId.CloseApplications:
+                    {
+                        var message = e.Message as CloseApplicationsMessage;
+                        FormAppList.Invoke((Action)delegate ()
+                        {
+                            // Disable exit of the program
+                            MenuItemExit.Enabled = false;
+
+                            if (FormCloseApplication != null && !FormCloseApplication.IsDisposed)
+                                FormCloseApplication.Dispose();
+
+                            FormCloseApplication = new CloseApplication(message.ApplicationNames);
+                            FormCloseApplication.Show();
+                        });
+                    }
+                    break;
             }
         }
 
@@ -112,8 +149,8 @@ namespace DeploymentToolkit.TrayApp
             _logger.Info("Close requested from TrayIcon. Closing...");
             try
             {
-                AppList.Close();
-                AppList.Dispose();
+                FormAppList.Close();
+                FormAppList.Dispose();
                 TrayIcon.Dispose();
             }
             catch(Exception ex)
@@ -126,14 +163,14 @@ namespace DeploymentToolkit.TrayApp
 
         private static void ToggleTrayAppClicked(object sender, EventArgs e)
         {
-            if(AppList.IsDisposed || AppList == null)
+            if(FormAppList.IsDisposed || FormAppList == null)
             {
                 _logger.Warn("AppList seems to be completly closed. Recreating form");
-                AppList = null;
-                AppList = new AppList();
+                FormAppList = null;
+                FormAppList = new AppList();
             }
 
-            if (ToggleVisibilityMenuItem.Text == "Show")
+            if (MenuItemToggleVisibility.Text == "Show")
                 ShowAppList();
             else
                 HideAppList();
@@ -142,16 +179,16 @@ namespace DeploymentToolkit.TrayApp
         internal static void HideAppList()
         {
             _logger.Trace("Executing HideAppList");
-            ToggleVisibilityMenuItem.Text = "Show";
-            AppList.Hide();
+            MenuItemToggleVisibility.Text = "Show";
+            FormAppList.Hide();
             _logger.Trace("Executed HideAppList");
         }
 
         internal static void ShowAppList()
         {
             _logger.Trace("Executing ShowAppList");
-            ToggleVisibilityMenuItem.Text = "Hide";
-            AppList.Show();
+            MenuItemToggleVisibility.Text = "Hide";
+            FormAppList.Show();
             _logger.Trace("Executed ShowAppList");
         }
     }
