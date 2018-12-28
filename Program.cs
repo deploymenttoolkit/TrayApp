@@ -98,6 +98,26 @@ namespace DeploymentToolkit.TrayApp
             MenuItemExit.Click += CloseTrayAppClicked;
             contextMenu.MenuItems.Add(MenuItemExit);
 
+#if DEBUG
+            _logger.Trace("Creating debug MenuItems...");
+
+            {
+                var item = new MenuItem()
+                {
+                    Index = 2,
+                    Text = "View CloseApplication (cmd.exe)"
+                };
+                item.Click += delegate (object sender, EventArgs e)
+                {
+                    FormCloseApplication?.Dispose();
+                    FormCloseApplication = new CloseApplication(new[] { "cmd.exe" });
+                    FormCloseApplication.Show();
+                };
+                contextMenu.MenuItems.Add(item);
+            }
+
+#endif
+
             _logger.Trace("Finishing TrayIcon...");
             TrayIcon.ContextMenu = contextMenu;
             TrayIcon.Visible = true;
@@ -130,8 +150,10 @@ namespace DeploymentToolkit.TrayApp
                         var message = e.Message as CloseApplicationsMessage;
                         FormAppList.Invoke((Action)delegate ()
                         {
+#if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
+#endif
 
                             if (FormCloseApplication != null && !FormCloseApplication.IsDisposed)
                                 FormCloseApplication.Dispose();
@@ -157,7 +179,7 @@ namespace DeploymentToolkit.TrayApp
             {
                 _logger.Error(ex, "Failed to gracefully close application");
             }
-            _logger.Info("Application ready to close");
+            _logger.Info("Application exited");
             Environment.Exit(0);
         }
 

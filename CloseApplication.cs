@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace DeploymentToolkit.TrayApp
@@ -12,10 +13,15 @@ namespace DeploymentToolkit.TrayApp
         private string[] _applicationList;
         private Timer _checkApplicationsTimer;
 
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
         public CloseApplication(string[] applications)
         {
             _logger.Trace("Initializing components...");
             InitializeComponent();
+            PanelLoading.Visible = false;
 
             _logger.Trace("Initializing applications...");
             _applicationList = applications;
@@ -91,6 +97,60 @@ namespace DeploymentToolkit.TrayApp
             if(this.WindowState != FormWindowState.Normal)
             {
                 this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void OnButtonCloseClick(object sender, EventArgs e)
+        {
+            _logger.Trace("User decided to let us close the applications. Executing...");
+
+            _logger.Trace("Showing loading screen...");
+            this.Controls.SetChildIndex(PanelLoading, 0);
+            PanelLoading.Visible = true;
+
+            _logger.Trace("Stopping timer...");
+            _checkApplicationsTimer.Stop();
+
+            foreach(var application in _applicationList)
+            {
+                try
+                {
+                    var processName = application.ToLower().EndsWith(".exe") ? application.Substring(0, application.Length - 4) : application;
+                    _logger.Trace($"Searching for running instances of {processName}");
+                    var processes = Process.GetProcessesByName(processName);
+                    _logger.Trace($"Found {processes.Length} instances of {processName}");
+
+                    foreach (var process in processes)
+                    {
+                        process.Refresh();
+                        if(process.HasExited)
+                        {
+                            _logger.Trace($"Skipping [{process.Id}]{process.ProcessName} as it seems to be closed");
+                            continue;
+                        }
+
+                        try
+                        {
+                            _logger.Trace($"Trying to close [{process.Id}]{process.ProcessName} gracefully");
+                            // Send a WM_CLOSE and wait for a gracefull exit
+                            PostMessage(process.Handle, 0x0010, IntPtr.Zero, IntPtr.Zero);
+                            if(!process.WaitForExit(5000))
+                            {
+                                _logger.Trace($"[{process.Id}]{process.ProcessName} did not close after being instructed. Killing...");
+                                process.Kill();
+                            }
+                            
+                        }
+                        catch(Exception ex)
+                        {
+                            _logger.Error(ex, $"Error closing [{process.Id}]{process.ProcessName}");
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _logger.Error(ex, $"Error while processing {application}");
+                }
             }
         }
     }
