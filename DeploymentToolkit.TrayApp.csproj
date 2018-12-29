@@ -95,11 +95,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DeploymentToolkit\DeploymentToolkit.Messaging\DeploymentToolkit.Messaging.csproj">
+    <ProjectReference Include="..\DeploymentToolkit.Deployment\DeploymentToolkit.Messaging\DeploymentToolkit.Messaging.csproj">
       <Project>{65AC59C5-F17A-4F96-97B2-B0ECB4304C3B}</Project>
       <Name>DeploymentToolkit.Messaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DeploymentToolkit\DeploymentToolkit.Modals\DeploymentToolkit.Modals.csproj">
+    <ProjectReference Include="..\DeploymentToolkit.Deployment\DeploymentToolkit.Modals\DeploymentToolkit.Modals.csproj">
       <Project>{ec3fedb7-4fc0-4dcf-a08f-f1de2dc49e00}</Project>
       <Name>DeploymentToolkit.Modals</Name>
     </ProjectReference>
