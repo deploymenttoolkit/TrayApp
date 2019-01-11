@@ -188,6 +188,25 @@ namespace DeploymentToolkit.TrayApp
                         });
                     }
                     break;
+
+                case MessageId.DeferDeployment:
+                    {
+                        var message = e.Message as DeferMessage;
+                        FormAppList.Invoke((Action)delegate ()
+                        {
+#if !DEBUG
+                            // Disable exit of the program
+                            MenuItemExit.Enabled = false;
+#endif
+
+                            if (FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
+                                FormCloseApplication.Dispose();
+
+                            FormDeploymentDeferal = new DeploymentDeferal();
+                            FormDeploymentDeferal.Show();
+                        });
+                    }
+                    break;
             }
         }
 
