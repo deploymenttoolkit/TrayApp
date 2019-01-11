@@ -15,6 +15,7 @@ namespace DeploymentToolkit.TrayApp
     {
         public static AppList FormAppList;
         public static CloseApplication FormCloseApplication;
+        public static DeploymentDeferal FormDeploymentDeferal;
 
         public static NotifyIcon TrayIcon;
 
@@ -67,6 +68,15 @@ namespace DeploymentToolkit.TrayApp
 
             _logger.Info($"{Namespace} v{Version} initializing...");
 
+            var ownProcess = Process.GetCurrentProcess();
+            var openProcesses = Process.GetProcessesByName(ownProcess.ProcessName).Where(p => p.SessionId == ownProcess.SessionId);
+            if(openProcesses.Count() > 1)
+            {
+                // There is already another process in this session. Just exit
+                _logger.Info($"Another instance of {ownProcess.ProcessName} is already running. Exiting...");
+                Environment.Exit(0);
+            }
+
             _logger.Trace("Creating AppList...");
             FormAppList = new AppList();
 
@@ -112,6 +122,21 @@ namespace DeploymentToolkit.TrayApp
                     FormCloseApplication?.Dispose();
                     FormCloseApplication = new CloseApplication(new[] { "cmd.exe" });
                     FormCloseApplication.Show();
+                };
+                contextMenu.MenuItems.Add(item);
+            }
+
+            {
+                var item = new MenuItem()
+                {
+                    Index = 3,
+                    Text = "View DeploymentDeferal"
+                };
+                item.Click += delegate(object sender, EventArgs e)
+                {
+                    FormDeploymentDeferal?.Dispose();
+                    FormDeploymentDeferal = new DeploymentDeferal();
+                    FormDeploymentDeferal.Show();
                 };
                 contextMenu.MenuItems.Add(item);
             }
@@ -163,6 +188,18 @@ namespace DeploymentToolkit.TrayApp
                         });
                     }
                     break;
+            }
+        }
+
+        internal static void SendMessage(IMessage message)
+        {
+            try
+            {
+                _pipeServer.SendMessage(message);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error(ex, "Failed to communicate with deployment");
             }
         }
 

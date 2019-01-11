@@ -64,6 +64,12 @@
     <Compile Include="CloseApplication.Designer.cs">
       <DependentUpon>CloseApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeploymentDeferal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeploymentDeferal.Designer.cs">
+      <DependentUpon>DeploymentDeferal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AppList.resx">
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CloseApplication.resx">
       <DependentUpon>CloseApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeploymentDeferal.resx">
+      <DependentUpon>DeploymentDeferal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
