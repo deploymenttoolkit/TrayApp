@@ -42,12 +42,21 @@ namespace DeploymentToolkit.TrayApp
         {
             _logger.Trace("User choose to defer installation");
 
+            ButtonDefer.Enabled = false;
+            ButtonContinue.Enabled = false;
+
             Program.SendMessage(new DeferMessage());
+            Program.CloseForm(this);
         }
 
         private void ButtonContinue_Click(object sender, EventArgs e)
         {
             _logger.Trace("User choose to continue with installation");
+
+            ButtonDefer.Enabled = false;
+            ButtonContinue.Enabled = false;
+
+            Program.CloseForm(this);
         }
     }
 }

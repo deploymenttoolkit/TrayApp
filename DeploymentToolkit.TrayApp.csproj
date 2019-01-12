@@ -143,8 +143,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>taskkill /F /IM $(TargetFileName) 2&gt;nul &amp;set errorlevel=0</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(ProjectDir)Languages" "$(TargetDir)Languages" /s /i /y</PostBuildEvent>

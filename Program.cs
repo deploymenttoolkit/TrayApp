@@ -282,5 +282,15 @@ namespace DeploymentToolkit.TrayApp
             FormAppList.Show();
             _logger.Trace("Executed ShowAppList");
         }
+
+        internal static void CloseForm(Form form)
+        {
+            if (form == null)
+                return;
+            var type = form.GetType();
+            var name = type.Name;
+            _logger.Info($"Closing form {name}");
+            form.Dispose();
+        }
     }
 }
