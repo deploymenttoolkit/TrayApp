@@ -1,4 +1,5 @@
 ﻿using DeploymentToolkit.Messaging.Messages;
+using DeploymentToolkit.Modals;
 using NLog;
 using System;
 using System.Windows.Forms;
@@ -56,6 +57,10 @@ namespace DeploymentToolkit.TrayApp
             ButtonDefer.Enabled = false;
             ButtonContinue.Enabled = false;
 
+            Program.SendMessage(new ContinueMessage()
+            {
+                DeploymentStep = DeploymentStep.DeferDeployment
+            });
             Program.CloseForm(this);
         }
     }

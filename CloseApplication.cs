@@ -1,7 +1,10 @@
-﻿using NLog;
+﻿using DeploymentToolkit.Messaging.Messages;
+using DeploymentToolkit.Modals;
+using NLog;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DeploymentToolkit.TrayApp
@@ -94,6 +97,8 @@ namespace DeploymentToolkit.TrayApp
                     _logger.Error(ex, $"Error processing {application}");
                 }
             }
+
+            ButtonContinue.Enabled = (ListViewCloseApplications.Items.Count == 0);
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
@@ -120,47 +125,67 @@ namespace DeploymentToolkit.TrayApp
             _logger.Trace("Stopping timer...");
             _checkApplicationsTimer.Stop();
 
-            foreach(var application in _applicationList)
+            Task.Run(delegate
             {
-                try
+                foreach (var application in _applicationList)
                 {
-                    var processName = application.ToLower().EndsWith(".exe") ? application.Substring(0, application.Length - 4) : application;
-                    _logger.Trace($"Searching for running instances of {processName}");
-                    var processes = Process.GetProcessesByName(processName);
-                    _logger.Trace($"Found {processes.Length} instances of {processName}");
-
-                    foreach (var process in processes)
+                    try
                     {
-                        process.Refresh();
-                        if(process.HasExited)
-                        {
-                            _logger.Trace($"Skipping [{process.Id}]{process.ProcessName} as it seems to be closed");
-                            continue;
-                        }
+                        var processName = application.ToLower().EndsWith(".exe") ? application.Substring(0, application.Length - 4) : application;
+                        _logger.Trace($"Searching for running instances of {processName}");
+                        var processes = Process.GetProcessesByName(processName);
+                        _logger.Trace($"Found {processes.Length} instances of {processName}");
 
-                        try
+                        foreach (var process in processes)
                         {
-                            _logger.Trace($"Trying to close [{process.Id}]{process.ProcessName} gracefully");
-                            // Send a WM_CLOSE and wait for a gracefull exit
-                            PostMessage(process.Handle, 0x0010, IntPtr.Zero, IntPtr.Zero);
-                            if(!process.WaitForExit(5000))
+                            process.Refresh();
+                            if (process.HasExited)
                             {
-                                _logger.Trace($"[{process.Id}]{process.ProcessName} did not close after being instructed. Killing...");
-                                process.Kill();
+                                _logger.Trace($"Skipping [{process.Id}]{process.ProcessName} as it seems to be closed");
+                                continue;
                             }
-                            
-                        }
-                        catch(Exception ex)
-                        {
-                            _logger.Error(ex, $"Error closing [{process.Id}]{process.ProcessName}");
+
+                            try
+                            {
+                                _logger.Trace($"Trying to close [{process.Id}]{process.ProcessName} gracefully");
+                                // Send a WM_CLOSE and wait for a gracefull exit
+                                PostMessage(process.Handle, 0x0010, IntPtr.Zero, IntPtr.Zero);
+                                if (!process.WaitForExit(5000))
+                                {
+                                    _logger.Trace($"[{process.Id}]{process.ProcessName} did not close after being instructed. Killing...");
+                                    process.Kill();
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.Error(ex, $"Error closing [{process.Id}]{process.ProcessName}");
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        _logger.Error(ex, $"Error while processing {application}");
+                    }
                 }
-                catch(Exception ex)
+            }).ContinueWith(delegate (Task task)
+            {
+                Program.SendMessage(new ContinueMessage()
                 {
-                    _logger.Error(ex, $"Error while processing {application}");
-                }
-            }
+                    DeploymentStep = DeploymentStep.CloseApplications
+                });
+                Program.CloseForm(this);
+            }); 
+        }
+
+        private void OnButtonContinueClick(object sender, EventArgs e)
+        {
+            _logger.Trace("User choose to continue with deployment...");
+            Program.SendMessage(new ContinueMessage()
+            {
+                DeploymentStep = DeploymentStep.CloseApplications
+            });
+            Program.CloseForm(this);
         }
     }
 }
