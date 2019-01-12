@@ -17,6 +17,8 @@ namespace DeploymentToolkit.TrayApp
         public static CloseApplication FormCloseApplication;
         public static DeploymentDeferal FormDeploymentDeferal;
 
+        public static LanguageManager LanguageManager;
+
         public static NotifyIcon TrayIcon;
 
         public static MenuItem MenuItemExit;
@@ -75,6 +77,17 @@ namespace DeploymentToolkit.TrayApp
                 // There is already another process in this session. Just exit
                 _logger.Info($"Another instance of {ownProcess.ProcessName} is already running. Exiting...");
                 Environment.Exit(0);
+            }
+
+            _logger.Trace("Creating LanguageManager...");
+            try
+            {
+                LanguageManager = new LanguageManager();
+            }
+            catch(Exception ex)
+            {
+                _logger.Fatal(ex, "Failed to create LanaugeManager. Exiting...");
+                Environment.Exit(-1);
             }
 
             _logger.Trace("Creating AppList...");

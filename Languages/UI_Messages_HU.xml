@@ -1,0 +1,43 @@
+<Messages>
+  <DiskSpace_Message> Nincs elég lemezterület a telepítés végrehajtásához:
+		{0}
+		Szükséges lemezterület: {1}MB
+		Szabad lemezterület: {2}MB
+		Kérem szabadítson fel elegendő lemezterületet a telepítés végrehajtásához.</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>Tovább</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>Csak azután kattintson a „Tovább”-ra, ha a fentebb látható alkalmazás(oka)t bezárta.</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>Alkalmazások bezárása</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer> Elhalaszt</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message> Az alábbi programokat szíveskedjen bezárni, mielőtt a telepítés elkezdődik.
+
+		Kérjük mentse munkáját és a folytatáshoz zárja be a futó alkalmazásokat. 
+		Vagy
+		Kérjük mentse munkáját és kattintson a „Programok bezárása”-ra.
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>Megjegyzés: a programok automatikusan bezárásra kerülnek,:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>A következő alkalmazások telepítésre kerülnek:</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>A telepítést elhalaszthatja amíg a rendelkezésre álló idő lejár:</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>Amennyiben a rendelkezésre álló idő letelik, nem lesz lehetősége a telepítés elhalasztására. </DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals> Fennmaradó halasztás:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>Időpont:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>A(z) {0} automatikusan folytatódik:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>Telepítés</DeploymentType_Install>
+  <DeploymentType_UnInstall>Eltávolítás</DeploymentType_UnInstall>
+  <BalloonText_Start>elindult.</BalloonText_Start>
+  <BalloonText_Complete>elkészült.</BalloonText_Complete>
+  <BalloonText_RestartRequired>elkészült.Újraindítás szükséges.</BalloonText_RestartRequired>
+  <BalloonText_Error>sikertelen.</BalloonText_Error>
+  <BalloonText_FastRetry>nem lehet befejezni.</BalloonText_FastRetry>
+  <Progress_MessageInstall>Telepítés folyamatban. Kérem várjon...</Progress_MessageInstall>
+  <Progress_MessageUninstall>Eltávolítás folyamatban. Kérem várjon...</Progress_MessageUninstall>
+  <BlockExecution_Message> A következő alkalmazások blokkolva lesznek, annak érdekében hogy a telepítés problémamentesen végrehajtódjon.</BlockExecution_Message>
+  <RestartPrompt_Title>Újraindítás szükséges</RestartPrompt_Title>
+  <RestartPrompt_Message>A telepítés befejezéséhez a számítógépet újraindítása szükséges.</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>Kérem mentse munkáját, és a megadott időn belül indítsa újra..</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>A hátralévő idő leteltével a számítógép újraindul.</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>Hátralévő idő:</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>Újraindítás később</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>Újraindítás most</RestartPrompt_ButtonRestartNow>
+</Messages>

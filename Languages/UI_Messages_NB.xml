@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>Du har ikke nok diskplass for å fullføre installasjonen av:
+		{0}
+
+		Ledig plass påkrevd: {1}MB
+		Ledig plass tilgjengelig: {2}MB
+
+		Frigjør diskplass for å fortsette installasjonen.</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>Fortsett</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>Velg kun "Fortsett" etter du har lukket applikasjonen(e) oppført over.</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>Lukk Programmer</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>Utsett</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>Følgende programmer må lukkes før installasjonen kan fortsette.
+
+		Lagre arbeidet, lukk programmene og velg "Fortsett"
+		Eller velg "Lukk Programmer" uten å lagre.
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>OBS: Programmet vil automatisk lukkes om:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>Følgende program vil bli installert:</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>Du kan velge å utsette installasjonen et begrenset antall ganger inntil fristen utløper:</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>Når fristen har utløpt kan du ikke lenger utsette installasjonen.</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>Gjenstående utsettelser:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>Frist:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>Installasjon</DeploymentType_Install>
+  <DeploymentType_UnInstall>Avinstallasjon</DeploymentType_UnInstall>
+  <BalloonText_Start>startet.</BalloonText_Start>
+  <BalloonText_Complete>fullført.</BalloonText_Complete>
+  <BalloonText_RestartRequired>ferdig. En omstart er nødvendig.</BalloonText_RestartRequired>
+  <BalloonText_Error>mislyktes.</BalloonText_Error>
+  <BalloonText_FastRetry>ikke fullført.</BalloonText_FastRetry>
+  <Progress_MessageInstall>Programvareinstallasjon pågår. Vennligst vent..</Progress_MessageInstall>
+  <Progress_MessageUninstall>ProgramvareAvinstallasjon pågår. Vennligst vent..</Progress_MessageUninstall>
+  <BlockExecution_Message>Start av dette programmet er midlertidig blokkert til programvareinstallasjon er ferdig.</BlockExecution_Message>
+  <RestartPrompt_Title>Omstart Kreves</RestartPrompt_Title>
+  <RestartPrompt_Message>En omstart av pcen er nødvendig for å fullføre installasjonen.</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>Lagre arbeidet ditt og gjør en omstart av pc innen fristen.</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>Pcen vil automatisk starte på nytt, når nedtellingen er slutt.</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>Tid som gjenstår:</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>Omstart Senere</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>Omstart Nå</RestartPrompt_ButtonRestartNow>
+</Messages>

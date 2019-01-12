@@ -34,7 +34,6 @@
             this.LabelBottom = new System.Windows.Forms.Label();
             this.ButtonClose = new System.Windows.Forms.Button();
             this.ButtonContinue = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.PanelLoading = new System.Windows.Forms.Panel();
             this.LabelLoading = new System.Windows.Forms.Label();
@@ -113,16 +112,6 @@
             this.ButtonContinue.Text = "Continue";
             this.ButtonContinue.UseVisualStyleBackColor = true;
             // 
-            // button2
-            // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button2.Location = new System.Drawing.Point(169, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 24);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Close Programs";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -133,7 +122,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Controls.Add(this.ButtonClose, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ButtonContinue, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 325);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -202,7 +190,6 @@
         private System.Windows.Forms.Label LabelBottom;
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.Button ButtonContinue;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel PanelLoading;
         private System.Windows.Forms.Label LabelLoading;

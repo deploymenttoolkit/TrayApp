@@ -37,6 +37,15 @@ namespace DeploymentToolkit.TrayApp
             // Manually do the first tick to fill the list
             CheckApplications(null, null);
 
+            _logger.Trace("Setting languages...");
+            var language = LanguageManager.Language;
+            ButtonClose.Text = language.ClosePrompt_ButtonClose;
+            ButtonContinue.Text = language.ClosePrompt_ButtonContinue;
+            LabelTop.Text = language.ClosePrompt_Message;
+
+            // TODO: Send settings to tray app for countdown and shit
+            LabelBottom.Text = "";
+
             _logger.Trace("Ready to display");
         }
 

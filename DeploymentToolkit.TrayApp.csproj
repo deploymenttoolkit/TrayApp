@@ -70,6 +70,7 @@
     <Compile Include="DeploymentDeferal.Designer.cs">
       <DependentUpon>DeploymentDeferal.cs</DependentUpon>
     </Compile>
+    <Compile Include="LanguageManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AppList.resx">
@@ -112,6 +113,40 @@
       <Project>{ec3fedb7-4fc0-4dcf-a08f-f1de2dc49e00}</Project>
       <Name>DeploymentToolkit.Modals</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DeploymentToolkit.Deployment\DeploymentToolkit.Settings\DeploymentToolkit.Settings.csproj">
+      <Project>{B33801AE-9ED8-4B65-B69D-B8D0365C9427}</Project>
+      <Name>DeploymentToolkit.Settings</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Languages\UI_Messages_AR.xml" />
+    <Content Include="Languages\UI_Messages_DA.xml" />
+    <Content Include="Languages\UI_Messages_DE.xml" />
+    <Content Include="Languages\UI_Messages_EN.xml" />
+    <Content Include="Languages\UI_Messages_ES.xml" />
+    <Content Include="Languages\UI_Messages_FR.xml" />
+    <Content Include="Languages\UI_Messages_HE.xml" />
+    <Content Include="Languages\UI_Messages_HU.xml" />
+    <Content Include="Languages\UI_Messages_IT.xml" />
+    <Content Include="Languages\UI_Messages_JA.xml" />
+    <Content Include="Languages\UI_Messages_KO.xml" />
+    <Content Include="Languages\UI_Messages_NB.xml" />
+    <Content Include="Languages\UI_Messages_NL.xml" />
+    <Content Include="Languages\UI_Messages_PL.xml" />
+    <Content Include="Languages\UI_Messages_PT-BR.xml" />
+    <Content Include="Languages\UI_Messages_PT.xml" />
+    <Content Include="Languages\UI_Messages_RU.xml" />
+    <Content Include="Languages\UI_Messages_SK.xml" />
+    <Content Include="Languages\UI_Messages_SV.xml" />
+    <Content Include="Languages\UI_Messages_ZH-Hans.xml" />
+    <Content Include="Languages\UI_Messages_ZH-Hant.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)Languages" "$(TargetDir)Languages" /s /i /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

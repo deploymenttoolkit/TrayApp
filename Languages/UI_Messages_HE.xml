@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>:אין לך מספיק מקום בכונן כדי להשלים את ההתקנה של:
+		{0}
+
+		מקום נדרש: {1}מ"ב
+		מקום זמין: {2}מ"ב
+
+		אנא שחרר מספיק מקום בכונן כדי להתחיל בהתקנה.</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>המשך</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>בחר "המשך" רק לאחר שסגרת את היישום(ים) הרשומים לעיל.</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>סגור תכניות</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>דחה</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>יש לסגור את התכנות הבאות בטרם ההתקנה תוכל להתחיל.
+
+		אנא שמור על העבודה שלך, סגור את התכניות, ואז המשך.
+		לחילופין, שמור על העבודה שלך והקלק על "סגור תכניות".
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>שים לב: התכנית(ות) תסגרנה באופן אוטומטי תוך:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>היישום הבא עומד להיות מותקן:</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>אתה יכול לבחור לדחות את ההתקנה עד שמשך זמן הדחיה יפוג.</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>לאחר שמשך זמן הדחיה יפוג, לא תהיה לך עוד אפשרות לדחות.</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>מספר הדחיות שנותרו:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>תאריך יעד:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>התקנה</DeploymentType_Install>
+  <DeploymentType_UnInstall>הסרה</DeploymentType_UnInstall>
+  <BalloonText_Start>התחילה.</BalloonText_Start>
+  <BalloonText_Complete>הושלמה.</BalloonText_Complete>
+  <BalloonText_RestartRequired>הושלמה. נדרש אתחול המחשב.</BalloonText_RestartRequired>
+  <BalloonText_Error>נכשלה.</BalloonText_Error>
+  <BalloonText_FastRetry>לא הושלמה.</BalloonText_FastRetry>
+  <Progress_MessageInstall>מבצע התקנה. נא להמתין.</Progress_MessageInstall>
+  <Progress_MessageUninstall>מבצע הסרה. נא להמתין.</Progress_MessageUninstall>
+  <BlockExecution_Message>הרצת היישום הזה נחסמה זמנית כדי שפעולת התקנה תוכל להסתיים.</BlockExecution_Message>
+  <RestartPrompt_Title>נדרש אתחול המחשב</RestartPrompt_Title>
+  <RestartPrompt_Message>כדי להשלים את ההתקנה, עליך לאתחל את המחשב שלך מחדש.</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>אנא שמור על העבודה שלך ואתחל במסגרת הזמן המוקצב.</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>המחשב שלך יאותחל באופן אוטומטי בסיום הספירה לאחור.</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>הזמן הנותר:</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>אתחל מאוחר יותר</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>אתחל עכשיו</RestartPrompt_ButtonRestartNow>
+</Messages>

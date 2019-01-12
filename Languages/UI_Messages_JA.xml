@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>ディスクの空き容量が不足しているため、インストールを完了できません：
+		{0}
+
+		必要な容量: {1}MB
+		現在の空き容量: {2}MB
+
+		インストールを実行するために、容量を確保してください</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>続行</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>上記に記載されているアプリケーションを終了してから「続ける」を選択してください。</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>プログラムを強制終了</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>後で</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>インストールを実行するために、下記のプログラムを閉じる必要があります。
+
+		実行中のアプリケーションを保存し、閉じてから続行してください。
+		または、実行中のアプリケーションを保存し、プログラムを強制終了ボタンをクリックしてくだい
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>注意: これらのプログラムは自動的に閉じられます:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>このアプリケーションはこれからインストールされます。</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>再試行可能回数が0になるまでは、都合の良い時にインストール可能です。</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>再試行可能回数が0になった場合、システムで強制インストールをします。</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>再試行可能回数:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>デッドライン:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>インストール</DeploymentType_Install>
+  <DeploymentType_UnInstall>アンインストール</DeploymentType_UnInstall>
+  <BalloonText_Start>開始</BalloonText_Start>
+  <BalloonText_Complete>完了です</BalloonText_Complete>
+  <BalloonText_RestartRequired>完了。再起動が必要です。</BalloonText_RestartRequired>
+  <BalloonText_Error>失敗。</BalloonText_Error>
+  <BalloonText_FastRetry>未完了。</BalloonText_FastRetry>
+  <Progress_MessageInstall>インストール中です。 少々お待ちください。</Progress_MessageInstall>
+  <Progress_MessageUninstall>アンインストール中です。 少々お待ちください。</Progress_MessageUninstall>
+  <BlockExecution_Message>アプリケーションインストールが完了するまで、このアプリケーションの起動を一時的にブロックしています。</BlockExecution_Message>
+  <RestartPrompt_Title>再起動が必要です</RestartPrompt_Title>
+  <RestartPrompt_Message>インストールを完了するために、再起動が必要です。</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>実行中のアプリケーションを保存し、再起動してください。</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>カウントダウン後にコンピュータが再起動します。</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>残時間：</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>後で再起動</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>今すぐ再起動</RestartPrompt_ButtonRestartNow>
+</Messages>

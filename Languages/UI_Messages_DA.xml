@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>Du har ikke plads nok til at færdiggøre installationen af:
+		{0}
+
+		Plads krævet: {1}MB
+		Plads tilgængelig: {2}MB
+
+		Vær venlig at frigøre nok diskplads før du fortsætter installationen.</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>Fortsæt</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>Vælg kun "Fortsæt" efter at du har afsluttet de ovenfor nævnte programmer.</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>Luk Programmer</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>Udsæt</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>Følgende programmer skal lukkes før installationen kan fortsætte.
+
+		Gem dit arbejde, luk programmerne og fortsæt.
+		Alternativt kan du gemme dit arbejde og trykke på "Luk Programmer".
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>BEMÆRK: Programmet/Programmerne vil automatisk blive lukket om:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>Følgende applikation vil nu blive installeret:</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>Du kan vælge at udsætte installationen indtil udsættelsesperioden udløber:</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>Når udsættelsesperioden udløber kan du ikke længere udsætte installationen.</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>Udsættelser tilbage:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>Deadline:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>Installation</DeploymentType_Install>
+  <DeploymentType_UnInstall>Afinstallation</DeploymentType_UnInstall>
+  <BalloonText_Start>startet.</BalloonText_Start>
+  <BalloonText_Complete>færdig.</BalloonText_Complete>
+  <BalloonText_RestartRequired>færdig. En genstart er nødvendig.</BalloonText_RestartRequired>
+  <BalloonText_Error>fejlet.</BalloonText_Error>
+  <BalloonText_FastRetry>ikke færdig.</BalloonText_FastRetry>
+  <Progress_MessageInstall>Installation i gang. Vent venligst...</Progress_MessageInstall>
+  <Progress_MessageUninstall>Afinstallation i gang. Vent venligst...</Progress_MessageUninstall>
+  <BlockExecution_Message>Opstart af denne applikation er midlertidigt blokeret da en installationsproces er under afvikling.</BlockExecution_Message>
+  <RestartPrompt_Title>Genstart Nødvendig</RestartPrompt_Title>
+  <RestartPrompt_Message>For at færdiggøre installationen skal du genstarte din computer.</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>Du bør venligst gemme dit arbejde og genstarte indenfor det givne tidsrum.</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>Din computer vil automatisk blive genstartet når nedtællingen er færdig.</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>Tid tilbage:</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>Genstart Senere</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>Genstart Nu</RestartPrompt_ButtonRestartNow>
+</Messages>

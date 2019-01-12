@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>У вас недостаточно пространства на диске для выполнения установки:
+		{0}
+
+		Необходимое пространство на диске: {1}МБ
+		Доступное пространство на диске: {2}МБ
+
+		Для продолжения установки, пожалуйста, освободите достаточно пространства на диске.</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>Продолжить</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>Выберите "Продолжить" только после закрытия вышеперечисленных приложений.</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>Закрыть программы</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>Отложить</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>Перед продолжением установки необходимо закрыть следующие программы.
+
+		Пожалуйста, сохраните вашу работу и закройте программы, а затем продолжите установку.
+		Также вы можете сохранить вашу работу и нажать "Закрыть программы".
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>ПРИМЕЧАНИЕ: Эти программы будут автоматически закрыты через:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>Планируется установка следующего приложения:</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>Вы можете отложить установку приложения до тех пор, пока не истечет срок действия этой отсрочки:</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>После истечения срока действия отсрочки вы больше не сможете отложить установку.</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>Оставшиеся отсрочки:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>Дата истечения:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>Установка</DeploymentType_Install>
+  <DeploymentType_UnInstall>Удаление</DeploymentType_UnInstall>
+  <BalloonText_Start>начата.</BalloonText_Start>
+  <BalloonText_Complete>выполнена.</BalloonText_Complete>
+  <BalloonText_RestartRequired>выполнена. Требуется перезагрузка.</BalloonText_RestartRequired>
+  <BalloonText_Error>не выполнена.</BalloonText_Error>
+  <BalloonText_FastRetry>не завершена.</BalloonText_FastRetry>
+  <Progress_MessageInstall>Идет установка. Пожалуйста, подождите...</Progress_MessageInstall>
+  <Progress_MessageUninstall>Идет удаление. Пожалуйста, подождите...</Progress_MessageUninstall>
+  <BlockExecution_Message>Запуск этого приложения временно заблокирован для завершения процесса установки.</BlockExecution_Message>
+  <RestartPrompt_Title>Требуется перезагрузка</RestartPrompt_Title>
+  <RestartPrompt_Message>Для завершения установки необходимо перезагрузить ваш компьютер.</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>Пожалуйста, сохраните вашу работу и выполните перезагрузку в отведенное время.</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>Ваш компьютер будет автоматически перезагружен по завершению обратного отсчета.</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>Оставшееся время:</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>Перезагрузить позже</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>Перезагрузить сейчас</RestartPrompt_ButtonRestartNow>
+</Messages>

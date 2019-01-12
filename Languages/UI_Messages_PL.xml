@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>Brak miejsca na dysku:
+		{0}
+
+		Potrzeba: {1}MB
+		Obecnie wolnego miejsca: {2}MB
+
+		Proszę zwiększyć ilość miejsca usuwając zbędne pliki.</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>Kontynuuj</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>Tylko wybrać „Kontynuuj” po zamknięciu wyżej wymienione aplikacje.</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>Zamknij Programy</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>Odłóż</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>Następujące programy muszą zostać zamknięte przed rozpoczęciem instalacji.
+
+		Proszę zapisać wszystkie dokumenty i zamknąć programy, a następnie kliknąć przycisk „Kontynuuj”.
+		Alternatywnie zapisz wszystkie dokumenty i kliknij przycisk „Zamknij Programy”.
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>UWAGA: Programy zostaną automatycznie zamknięte za:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>Zostanie zainstalowana następująca aplikacja:</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>Instalacja może zostać przełożona na późniejszy termin.</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>Jeżeli zostanie przekroczona możliwa ilość przełożeń, opcja „Odłóż” będzie niedostępna.</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>Pozostała ilość przełożeń instalacji:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>Ostateczny termin instalacji:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>Instalacja</DeploymentType_Install>
+  <DeploymentType_UnInstall>Deinstalacja</DeploymentType_UnInstall>
+  <BalloonText_Start>rozpoczęta.</BalloonText_Start>
+  <BalloonText_Complete>zakończona.</BalloonText_Complete>
+  <BalloonText_RestartRequired>zakończona. Wymagany jest restart komputera.</BalloonText_RestartRequired>
+  <BalloonText_Error>nie powiodła się.</BalloonText_Error>
+  <BalloonText_FastRetry>nieukończona.</BalloonText_FastRetry>
+  <Progress_MessageInstall>Trwa instalacja. Proszę czekać...</Progress_MessageInstall>
+  <Progress_MessageUninstall>Trwa deinstalacja. Proszę czekać...</Progress_MessageUninstall>
+  <BlockExecution_Message>Uruchomienie tej aplikacji zostało zablokowane na okres instalacji.</BlockExecution_Message>
+  <RestartPrompt_Title>Wymagany Restart</RestartPrompt_Title>
+  <RestartPrompt_Message>Aby instalacja została poprawnie ukończona wymagany jest restart komputera.</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>Proszę zapisać wszystkie dokumenty i zrestartować komputer w wyznaczonym czasie.</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>Komputer zostanie automatycznie zrestartowany po upływie wyznaczonego czasu.</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>Pozostały czas do restartu automatycznego:</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>Restartuj Później</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>Restartuj Teraz</RestartPrompt_ButtonRestartNow>
+</Messages>

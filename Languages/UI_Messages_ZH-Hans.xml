@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>没有足够的磁盘空间来完成下列安装：
+		{0}
+
+		所需空间：{1}MB
+		可用空间：{2}MB
+
+		请释放足够的磁盘空间以继续安装。</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>继续</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>在关闭上列应用程式后才选择"继续"。</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>关闭程序</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>延迟</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>为继续安装，必须关闭下列程序。
+
+		请保存您的工作，关闭程序，然后继续。
+		或者保存您的工作，点击"关闭程序"。
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>注：下列程序将自动关闭：</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>即将安装下列应用程式：</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>在延期失效前，可选择延迟安装：</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>延期失效后，再也无法延迟安装。</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>所剩延期：</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>最后期限：</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>安装</DeploymentType_Install>
+  <DeploymentType_UnInstall>卸载</DeploymentType_UnInstall>
+  <BalloonText_Start>已启动。</BalloonText_Start>
+  <BalloonText_Complete>完成。</BalloonText_Complete>
+  <BalloonText_RestartRequired>完成。必须重新启动。</BalloonText_RestartRequired>
+  <BalloonText_Error>失败。</BalloonText_Error>
+  <BalloonText_FastRetry>未完成。</BalloonText_FastRetry>
+  <Progress_MessageInstall>安装中。请稍等。。。</Progress_MessageInstall>
+  <Progress_MessageUninstall>卸载中。请稍等。。。</Progress_MessageUninstall>
+  <BlockExecution_Message>为完成安装过程，暂时禁止启动这款应用程式。</BlockExecution_Message>
+  <RestartPrompt_Title>需重启</RestartPrompt_Title>
+  <RestartPrompt_Message>为完成安装过程，需重启计算机。</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>请保存您的工作，并在容许时间重启计算机。</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>倒计时结束后，计算机将自动重启。</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>剩余时间：</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>稍后重启</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>现在重启</RestartPrompt_ButtonRestartNow>
+</Messages>

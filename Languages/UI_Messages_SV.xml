@@ -1,0 +1,44 @@
+<Messages>
+  <DiskSpace_Message>Du har inte tillräckligt med ledigt diskutrymme för att kunna installera:
+		{0}
+
+		Diskutrymme som krävs: {1}MB
+		Ledigt diskutrymme: {2}MB
+
+		Frigör utrymme på hårddisken och försök igen.</DiskSpace_Message>
+  <ClosePrompt_ButtonContinue>Fortsätt</ClosePrompt_ButtonContinue>
+  <ClosePrompt_ButtonContinueTooltip>Välj "Fortsätt" endast efter att ha stängt applikation(er) i ovanstående lista.</ClosePrompt_ButtonContinueTooltip>
+  <ClosePrompt_ButtonClose>Stäng Program</ClosePrompt_ButtonClose>
+  <ClosePrompt_ButtonDefer>Skjut upp</ClosePrompt_ButtonDefer>
+  <ClosePrompt_Message>Följande program måste stängas innan installationen kan fortsätta.
+
+		Se till att spara ditt arbete, stäng de öppna programmen och klicka sen på "Fortsätt".
+		Alternativt, spara ditt arbete och klicka på "Stäng Program".
+		</ClosePrompt_Message>
+  <ClosePrompt_CountdownMessage>OBS: Programmen kommer automatiskt att avslutas om:</ClosePrompt_CountdownMessage>
+  <DeferPrompt_WelcomeMessage>Följande applikation kommer att installeras:</DeferPrompt_WelcomeMessage>
+  <DeferPrompt_ExpiryMessage>Du kan välja att fördröja installationen ett begränsat antal gånger under en begränsad tid:</DeferPrompt_ExpiryMessage>
+  <DeferPrompt_WarningMessage>När antalet fördröjningar är slut eller deadlinen inträffar är detta alternativ inte längre tillgängligt.</DeferPrompt_WarningMessage>
+  <DeferPrompt_RemainingDeferrals>Antal återstående fördröjningar:</DeferPrompt_RemainingDeferrals>
+  <DeferPrompt_Deadline>Deadline:</DeferPrompt_Deadline>
+  <WelcomePrompt_CountdownMessage>The {0} will automatically continue in:</WelcomePrompt_CountdownMessage>
+  <WelcomePrompt_CustomMessage>
+  </WelcomePrompt_CustomMessage>
+  <DeploymentType_Install>Installation</DeploymentType_Install>
+  <DeploymentType_UnInstall>Avinstallation</DeploymentType_UnInstall>
+  <BalloonText_Start>startad.</BalloonText_Start>
+  <BalloonText_Complete>slutförd.</BalloonText_Complete>
+  <BalloonText_RestartRequired>slutförd. En omstart av datorn är nödvändig.</BalloonText_RestartRequired>
+  <BalloonText_Error>misslyckades.</BalloonText_Error>
+  <BalloonText_FastRetry>ej slutförd.</BalloonText_FastRetry>
+  <Progress_MessageInstall>Installation pågår. Var god vänta...</Progress_MessageInstall>
+  <Progress_MessageUninstall>Avinstallation pågår. Var god vänta...</Progress_MessageUninstall>
+  <BlockExecution_Message>Den här applikationen har temporärt blockerats så att installationen kan slutföras.</BlockExecution_Message>
+  <RestartPrompt_Title>Omstart Krävs</RestartPrompt_Title>
+  <RestartPrompt_Message>För att installationen ska kunna slutföras måste din dator startas om.</RestartPrompt_Message>
+  <RestartPrompt_MessageTime>Se till att spara ditt arbete innan tiden går ut och en automatisk omstart sker.</RestartPrompt_MessageTime>
+  <RestartPrompt_MessageRestart>Din dator kommer automatiskt att starta om när nedräkningen är slut.</RestartPrompt_MessageRestart>
+  <RestartPrompt_TimeRemaining>Återstående tid:</RestartPrompt_TimeRemaining>
+  <RestartPrompt_ButtonRestartLater>Starta Om Senare</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartNow>Starta Om Nu</RestartPrompt_ButtonRestartNow>
+</Messages>
