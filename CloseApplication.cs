@@ -16,11 +16,14 @@ namespace DeploymentToolkit.TrayApp
         private string[] _applicationList;
         private Timer _checkApplicationsTimer;
 
+        private int _forceCloseRemainingSeconds;
+        private Timer _forceCloseTimer;
+
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-        public CloseApplication(string[] applications)
+        public CloseApplication(string[] applications, int timeUntilForceClose)
         {
             _logger.Trace("Initializing components...");
             InitializeComponent();
@@ -45,10 +48,44 @@ namespace DeploymentToolkit.TrayApp
             ButtonContinue.Text = language.ClosePrompt_ButtonContinue;
             LabelTop.Text = language.ClosePrompt_Message;
 
-            // TODO: Send settings to tray app for countdown and shit
-            LabelBottom.Text = "";
+            if (timeUntilForceClose > 0)
+            {
+                _logger.Trace($"Force close is enabled. Forcing closeing in {timeUntilForceClose} seconds");
+                LabelBottom.Text = $"{language.ClosePrompt_CountdownMessage} {timeUntilForceClose}";
+                _forceCloseRemainingSeconds = timeUntilForceClose;
+
+                _forceCloseTimer = new Timer()
+                {
+                    Interval = 1000
+                };
+                _forceCloseTimer.Tick += CloseTimerTick;
+                _forceCloseTimer.Start();
+            }
 
             _logger.Trace("Ready to display");
+        }
+
+        private void CloseTimerTick(object sender, EventArgs e)
+        {
+            if (--_forceCloseRemainingSeconds <= 0)
+            {
+                // No time left
+                _logger.Trace("No time left on ForceCloseTimer");
+
+                _logger.Trace("Stopping timer...");
+                _forceCloseTimer.Stop();
+
+                _logger.Trace("Executing close applications ...");
+                OnButtonCloseClick(null, null);
+            }
+            else
+            {
+                // Update GUI with remaining time
+                this.Invoke((Action)delegate ()
+                {
+                    LabelBottom.Text = $"{LanguageManager.Language.ClosePrompt_CountdownMessage} {_forceCloseRemainingSeconds}";
+                });
+            }
         }
 
         private void CheckApplications(object sender, EventArgs e)
@@ -115,13 +152,17 @@ namespace DeploymentToolkit.TrayApp
 
         private void OnButtonCloseClick(object sender, EventArgs e)
         {
-            _logger.Trace("User decided to let us close the applications. Executing...");
+            if (sender != null)
+                _logger.Trace("User decided to let us close the applications. Executing...");
+            else
+                _logger.Trace("ForceClose time ran out. Closeing applications ...");
 
             _logger.Trace("Hiding window...");
             this.Visible = false;
 
             _logger.Trace("Stopping timer...");
             _checkApplicationsTimer.Stop();
+            _forceCloseTimer?.Stop();
 
             Task.Run(delegate
             {

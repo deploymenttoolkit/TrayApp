@@ -136,7 +136,7 @@ namespace DeploymentToolkit.TrayApp
                 item.Click += delegate (object sender, EventArgs e)
                 {
                     FormCloseApplication?.Dispose();
-                    FormCloseApplication = new CloseApplication(new[] { "cmd.exe" });
+                    FormCloseApplication = new CloseApplication(new[] { "cmd.exe" }, 0);
                     FormCloseApplication.Show();
                 };
                 contextMenu.MenuItems.Add(item);
@@ -247,7 +247,7 @@ namespace DeploymentToolkit.TrayApp
                             if (FormCloseApplication != null && !FormCloseApplication.IsDisposed)
                                 FormCloseApplication.Dispose();
 
-                            FormCloseApplication = new CloseApplication(message.ApplicationNames);
+                            FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
                             FormCloseApplication.Show();
                         });
                     }
