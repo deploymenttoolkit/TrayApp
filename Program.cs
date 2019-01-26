@@ -155,6 +155,15 @@ namespace DeploymentToolkit.TrayApp
                     FormDeploymentDeferal.Show();
                 };
                 contextMenu.MenuItems.Add(item);
+
+#if DEBUG
+                // Make sure this is never null as we may test dialogs
+                DeploymentInformation = new DeploymentInformationMessage()
+                {
+                    DeploymentName = "DEBUG",
+                    SequenceType = SequenceType.Installation
+                };
+#endif
             }
 
 #endif

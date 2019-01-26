@@ -70,6 +70,7 @@
     <Compile Include="DeploymentDeferal.Designer.cs">
       <DependentUpon>DeploymentDeferal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="LanguageManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

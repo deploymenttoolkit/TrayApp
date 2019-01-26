@@ -1,9 +1,8 @@
 ﻿using DeploymentToolkit.Modals;
+using DeploymentToolkit.TrayApp.Extensions;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace DeploymentToolkit.TrayApp
@@ -33,46 +32,7 @@ namespace DeploymentToolkit.TrayApp
             // The name column should use the remaining empty space
             AppView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            _logger.Trace("Searching for a Logo.png ...");
-            if(File.Exists("Logo.png"))
-            {
-                try
-                {
-                    this.PictureLogo.Image = Image.FromFile("Logo.png");
-
-                    /*
-                     * We could tecnically implement alignment here
-                     * The idea would be for the logo to be able to be left, right or center aligned
-                     * Currently the logo is always center aligned which may look good or not
-                     * Someone should look into this once things "work"
-                     */
-                    //if(this.PictureLogo.Image.Size.Height != 100)
-                    //{
-                    //    var scale = 100f / this.PictureLogo.Image.Height;
-                    //    var newWidth = this.PictureLogo.Image.Width * scale;
-                    //    var newHeight = this.PictureLogo.Image.Height * scale;
-                    //    var image = new Bitmap((int)newWidth, (int)newHeight);
-                    //    using (var graphic = Graphics.FromImage(image))
-                    //    {
-                    //        graphic.DrawImage(this.PictureLogo.Image, 0, 0, newWidth, newHeight);
-                    //    }
-                    //    this.PictureLogo.Image = image;
-
-                    //    if(image.Width < this.groupBox1.Width)
-                    //    {
-                    //        this.PictureLogo.Width = image.Width;
-                    //        this.PictureLogo.Left = this.groupBox1.Width - image.Width;
-                    //        this.PictureLogo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                    //    }
-                    //}
-
-                    this.PictureLogo.SizeMode = PictureBoxSizeMode.Zoom;
-                }
-                catch(Exception ex)
-                {
-                    _logger.Error(ex, "Failed to create logo");
-                }
-            }
+            this.AddLogo(PictureLogo);
         }
 
         private void AppList_Load(object sender, EventArgs e)

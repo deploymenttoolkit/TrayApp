@@ -1,5 +1,6 @@
 ﻿using DeploymentToolkit.Messaging.Messages;
 using DeploymentToolkit.Modals;
+using DeploymentToolkit.TrayApp.Extensions;
 using NLog;
 using System;
 using System.Windows.Forms;
@@ -14,12 +15,13 @@ namespace DeploymentToolkit.TrayApp
         {
             _logger.Trace("Initializing components...");
             InitializeComponent();
+            this.AddLogo(PictureLogo);
 
             _logger.Trace("Setting languages...");
             var language = LanguageManager.Language;
             ButtonContinue.Text = language.ClosePrompt_ButtonContinue;
             ButtonDefer.Text = language.ClosePrompt_ButtonDefer;
-            LabelTop.Text = language.DeferPrompt_WelcomeMessage;
+            LabelTop.Text = $"{language.DeferPrompt_WelcomeMessage}\n{Program.DeploymentInformation.DeploymentName}";
             LabelCenter.Text = language.DeferPrompt_ExpiryMessage;
             LabelBottom.Text = language.DeferPrompt_WarningMessage;
 

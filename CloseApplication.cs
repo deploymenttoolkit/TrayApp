@@ -1,5 +1,6 @@
 ﻿using DeploymentToolkit.Messaging.Messages;
 using DeploymentToolkit.Modals;
+using DeploymentToolkit.TrayApp.Extensions;
 using NLog;
 using System;
 using System.Diagnostics;
@@ -27,6 +28,7 @@ namespace DeploymentToolkit.TrayApp
         {
             _logger.Trace("Initializing components...");
             InitializeComponent();
+            this.AddLogo(PictureLogo);
 
             _logger.Trace("Initializing applications...");
             _applicationList = applications;
