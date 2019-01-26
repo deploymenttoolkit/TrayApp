@@ -24,7 +24,6 @@ namespace DeploymentToolkit.TrayApp
         {
             _logger.Trace("Initializing components...");
             InitializeComponent();
-            PanelLoading.Visible = false;
 
             _logger.Trace("Initializing applications...");
             _applicationList = applications;
@@ -118,9 +117,8 @@ namespace DeploymentToolkit.TrayApp
         {
             _logger.Trace("User decided to let us close the applications. Executing...");
 
-            _logger.Trace("Showing loading screen...");
-            this.Controls.SetChildIndex(PanelLoading, 0);
-            PanelLoading.Visible = true;
+            _logger.Trace("Hiding window...");
+            this.Visible = false;
 
             _logger.Trace("Stopping timer...");
             _checkApplicationsTimer.Stop();

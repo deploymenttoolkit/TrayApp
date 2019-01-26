@@ -35,11 +35,8 @@
             this.ButtonClose = new System.Windows.Forms.Button();
             this.ButtonContinue = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.PanelLoading = new System.Windows.Forms.Panel();
-            this.LabelLoading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureLogo)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.PanelLoading.SuspendLayout();
             this.SuspendLayout();
             // 
             // PictureLogo
@@ -131,28 +128,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(460, 30);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
-            // PanelLoading
-            // 
-            this.PanelLoading.Controls.Add(this.LabelLoading);
-            this.PanelLoading.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelLoading.Location = new System.Drawing.Point(0, 0);
-            this.PanelLoading.Name = "PanelLoading";
-            this.PanelLoading.Size = new System.Drawing.Size(484, 371);
-            this.PanelLoading.TabIndex = 12;
-            // 
-            // LabelLoading
-            // 
-            this.LabelLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabelLoading.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelLoading.Location = new System.Drawing.Point(12, 12);
-            this.LabelLoading.Name = "LabelLoading";
-            this.LabelLoading.Size = new System.Drawing.Size(460, 350);
-            this.LabelLoading.TabIndex = 0;
-            this.LabelLoading.Text = "Closing programs...";
-            this.LabelLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // CloseApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,7 +139,6 @@
             this.Controls.Add(this.ListViewCloseApplications);
             this.Controls.Add(this.LabelTop);
             this.Controls.Add(this.PictureLogo);
-            this.Controls.Add(this.PanelLoading);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(500, 410);
             this.MinimizeBox = false;
@@ -178,7 +152,6 @@
             this.Resize += new System.EventHandler(this.OnResize);
             ((System.ComponentModel.ISupportInitialize)(this.PictureLogo)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.PanelLoading.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -192,7 +165,5 @@
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.Button ButtonContinue;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel PanelLoading;
-        private System.Windows.Forms.Label LabelLoading;
     }
 }
