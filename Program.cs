@@ -1,6 +1,7 @@
 ﻿using DeploymentToolkit.Messaging;
 using DeploymentToolkit.Messaging.Events;
 using DeploymentToolkit.Messaging.Messages;
+using DeploymentToolkit.Modals;
 using NLog;
 using System;
 using System.Diagnostics;
@@ -23,6 +24,8 @@ namespace DeploymentToolkit.TrayApp
 
         public static MenuItem MenuItemExit;
         public static MenuItem MenuItemToggleVisibility;
+
+        public static DeploymentInformationMessage DeploymentInformation;
 
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -183,6 +186,54 @@ namespace DeploymentToolkit.TrayApp
             
             switch(e.MessageId)
             {
+                case MessageId.DeploymentInformationMessage:
+                    {
+                        _logger.Trace("Received DeploymentInformationMessage");
+                        DeploymentInformation = e.Message as DeploymentInformationMessage;
+
+                        _logger.Trace($"Deploymentmethod: {DeploymentInformation.SequenceType}");
+                        _logger.Trace($"Deploymentname: {DeploymentInformation.DeploymentName}");
+                    }
+                    break;
+
+                case MessageId.DeploymentStarted:
+                case MessageId.DeploymentSuccess:
+                case MessageId.DeploymentError:
+                    {
+                        var language = LanguageManager.Language;
+                        var text = DeploymentInformation.SequenceType == SequenceType.Installation
+                            ? language.DeploymentType_Install
+                            : language.DeploymentType_UnInstall;
+                        text += " ";
+                        var icon = ToolTipIcon.Info;
+
+                        if (e.MessageId == MessageId.DeploymentStarted)
+                        {
+                            text += language.BalloonText_Start;
+                        }
+                        else if(e.MessageId == MessageId.DeploymentSuccess)
+                        {
+                            text += language.BalloonText_Complete;
+                        }
+                        else if(e.MessageId == MessageId.DeploymentError)
+                        {
+                            icon = ToolTipIcon.Error;
+                            text += language.BalloonText_Error;
+                        }
+
+                        _logger.Trace($"Icon: {icon}");
+                        _logger.Trace($"Final balloon tip text: {text}");
+
+                        FormAppList.Invoke((Action)delegate ()
+                        {
+                            TrayIcon.BalloonTipIcon = icon;
+                            TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
+                            TrayIcon.BalloonTipText = text;
+                            TrayIcon.ShowBalloonTip(10000);
+                        });
+                    }
+                    break;
+
                 case MessageId.CloseApplications:
                     {
                         var message = e.Message as CloseApplicationsMessage;
