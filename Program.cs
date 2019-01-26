@@ -151,7 +151,7 @@ namespace DeploymentToolkit.TrayApp
                 item.Click += delegate(object sender, EventArgs e)
                 {
                     FormDeploymentDeferal?.Dispose();
-                    FormDeploymentDeferal = new DeploymentDeferal();
+                    FormDeploymentDeferal = new DeploymentDeferal(1, DateTime.Now.AddDays(7));
                     FormDeploymentDeferal.Show();
                 };
                 contextMenu.MenuItems.Add(item);
@@ -275,7 +275,7 @@ namespace DeploymentToolkit.TrayApp
                             if (FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
                                 FormCloseApplication.Dispose();
 
-                            FormDeploymentDeferal = new DeploymentDeferal();
+                            FormDeploymentDeferal = new DeploymentDeferal(message.RemainingDays, message.DeadLine);
                             FormDeploymentDeferal.Show();
                         });
                     }

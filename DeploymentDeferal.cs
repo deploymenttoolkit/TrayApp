@@ -11,7 +11,7 @@ namespace DeploymentToolkit.TrayApp
     {
         private Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public DeploymentDeferal()
+        public DeploymentDeferal(int remainingDays, DateTime deadline)
         {
             _logger.Trace("Initializing components...");
             InitializeComponent();
@@ -22,7 +22,18 @@ namespace DeploymentToolkit.TrayApp
             ButtonContinue.Text = language.ClosePrompt_ButtonContinue;
             ButtonDefer.Text = language.ClosePrompt_ButtonDefer;
             LabelTop.Text = $"{language.DeferPrompt_WelcomeMessage}\n{Program.DeploymentInformation.DeploymentName}";
-            LabelCenter.Text = language.DeferPrompt_ExpiryMessage;
+            
+            var text = $"{language.DeferPrompt_ExpiryMessage}\n";
+            if (remainingDays > 0)
+            {
+                text += $"{language.DeferPrompt_RemainingDeferrals} {remainingDays}\n";
+            }
+            if(deadline != DateTime.MinValue)
+            {
+                text += $"{language.DeferPrompt_Deadline} {deadline.ToShortDateString()}";
+            }
+            LabelCenter.Text = text;
+
             LabelBottom.Text = language.DeferPrompt_WarningMessage;
 
             _logger.Trace("Ready to display");
