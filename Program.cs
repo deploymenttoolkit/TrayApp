@@ -17,6 +17,7 @@ namespace DeploymentToolkit.TrayApp
         public static AppList FormAppList;
         public static CloseApplication FormCloseApplication;
         public static DeploymentDeferal FormDeploymentDeferal;
+        public static RestartDialog FormRestart;
 
         public static LanguageManager LanguageManager;
 
@@ -239,6 +240,25 @@ namespace DeploymentToolkit.TrayApp
                             TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
                             TrayIcon.BalloonTipText = text;
                             TrayIcon.ShowBalloonTip(10000);
+                        });
+                    }
+                    break;
+
+                case MessageId.DeploymentRestart:
+                    {
+                        var message = e.Message as DeploymentRestartMessage;
+                        FormAppList.Invoke((Action)delegate ()
+                        {
+#if !DEBUG
+                            // Disable exit of the program
+                            MenuItemExit.Enabled = false;
+#endif
+
+                            if (FormRestart != null && !FormRestart.IsDisposed)
+                                FormRestart.Dispose();
+
+                            FormRestart = new RestartDialog(message.TimeUntilForceRestart);
+                            FormRestart.Show();
                         });
                     }
                     break;

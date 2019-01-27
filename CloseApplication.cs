@@ -222,6 +222,14 @@ namespace DeploymentToolkit.TrayApp
         private void OnButtonContinueClick(object sender, EventArgs e)
         {
             _logger.Trace("User choose to continue with deployment...");
+
+            _logger.Trace("Hiding window...");
+            this.Visible = false;
+
+            _logger.Trace("Stopping timer...");
+            _checkApplicationsTimer.Stop();
+            _forceCloseTimer?.Stop();
+
             Program.SendMessage(new ContinueMessage()
             {
                 DeploymentStep = DeploymentStep.CloseApplications
