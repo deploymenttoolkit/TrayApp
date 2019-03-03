@@ -1,5 +1,5 @@
 ﻿using DeploymentToolkit.Modals;
-using DeploymentToolkit.Settings;
+using DeploymentToolkit.Modals.Settings;
 using Microsoft.Win32;
 using NLog;
 using System;
