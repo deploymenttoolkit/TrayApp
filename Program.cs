@@ -297,6 +297,12 @@ namespace DeploymentToolkit.TrayApp
                             TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
                             TrayIcon.BalloonTipText = $"You will be logged off in {message.TimeUntilForceLogoff} seconds";
                             TrayIcon.ShowBalloonTip(10000);
+
+                            System.Threading.Tasks.Task.Factory.StartNew(async () =>
+                            {
+                                await System.Threading.Tasks.Task.Delay(message.TimeUntilForceLogoff * 1000);
+                                Utils.PowerUtil.Logoff();
+                            });
                         });
                     }
                     break;
