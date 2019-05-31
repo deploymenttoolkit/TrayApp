@@ -24,6 +24,8 @@ namespace DeploymentToolkit.TrayApp
             ButtonNow.Text = language.RestartPrompt_ButtonRestartNow;
             ButtonLater.Text = language.RestartPrompt_ButtonRestartLater;
             LabelTop.Text = language.RestartPrompt_Message;
+            LabelCenter.Text = "";
+            LabelBottom.Text = "";
             
             if(timeUntilForcedRestart > 0)
             {
