@@ -132,7 +132,7 @@ namespace DeploymentToolkit.TrayApp
                 var item = new MenuItem()
                 {
                     Index = 2,
-                    Text = "View CloseApplication (cmd.exe)"
+                    Text = "DEBUG: View CloseApplication (cmd.exe)"
                 };
                 item.Click += delegate (object sender, EventArgs e)
                 {
@@ -147,7 +147,7 @@ namespace DeploymentToolkit.TrayApp
                 var item = new MenuItem()
                 {
                     Index = 3,
-                    Text = "View DeploymentDeferal"
+                    Text = "DEBUG: View DeploymentDeferal"
                 };
                 item.Click += delegate(object sender, EventArgs e)
                 {
@@ -157,14 +157,38 @@ namespace DeploymentToolkit.TrayApp
                 };
                 contextMenu.MenuItems.Add(item);
 
-#if DEBUG
                 // Make sure this is never null as we may test dialogs
                 DeploymentInformation = new DeploymentInformationMessage()
                 {
                     DeploymentName = "DEBUG",
                     SequenceType = SequenceType.Installation
                 };
-#endif
+            }
+
+            {
+                var item = new MenuItem()
+                {
+                    Index = 4,
+                    Text = "DEBUG: Logoff"
+                };
+                item.Click += delegate (object sender, EventArgs e)
+                {
+                    Utils.PowerUtil.Logoff();
+                };
+                contextMenu.MenuItems.Add(item);
+            }
+
+            {
+                var item = new MenuItem()
+                {
+                    Index = 5,
+                    Text = "DEBUG: Restart"
+                };
+                item.Click += delegate (object sender, EventArgs e)
+                {
+                    Utils.PowerUtil.Restart();
+                };
+                contextMenu.MenuItems.Add(item);
             }
 
 #endif
@@ -259,6 +283,20 @@ namespace DeploymentToolkit.TrayApp
 
                             FormRestart = new RestartDialog(message.TimeUntilForceRestart);
                             FormRestart.Show();
+                        });
+                    }
+                    break;
+
+                case MessageId.DeploymentLogoff:
+                    {
+                        var message = e.Message as DeploymentLogoffMessage;
+
+                        FormAppList.Invoke((Action)delegate ()
+                        {
+                            TrayIcon.BalloonTipIcon = ToolTipIcon.Warning;
+                            TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
+                            TrayIcon.BalloonTipText = $"You will be logged off in {message.TimeUntilForceLogoff} seconds";
+                            TrayIcon.ShowBalloonTip(10000);
                         });
                     }
                     break;

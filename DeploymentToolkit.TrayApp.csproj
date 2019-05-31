@@ -123,6 +123,10 @@
       <Project>{ec3fedb7-4fc0-4dcf-a08f-f1de2dc49e00}</Project>
       <Name>DeploymentToolkit.Modals</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DeploymentToolkit.Deployment\DeploymentToolkit.Util\DeploymentToolkit.Util.csproj">
+      <Project>{aebbe655-c600-4b78-8617-fa3921f33afa}</Project>
+      <Name>DeploymentToolkit.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Languages\UI_Messages_AR.xml" />
