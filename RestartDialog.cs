@@ -34,6 +34,8 @@ namespace DeploymentToolkit.TrayApp
                 LabelCenter.Text = $"{language.RestartPrompt_MessageTime}\n{language.RestartPrompt_MessageRestart}";
                 LabelBottom.Text = $"{language.RestartPrompt_TimeRemaining}\n{timeUntilForcedRestart}";
 
+                ButtonLater.Enabled = false;
+
                 _restartRemainingSeconds = timeUntilForcedRestart;
 
                 _logger.Trace("Setting up timer ...");
