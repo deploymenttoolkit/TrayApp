@@ -83,6 +83,7 @@
             this.ButtonLater.TabIndex = 8;
             this.ButtonLater.Text = "EditMe";
             this.ButtonLater.UseVisualStyleBackColor = true;
+            this.ButtonLater.Click += new System.EventHandler(this.ButtonLater_Click);
             // 
             // ButtonNow
             // 

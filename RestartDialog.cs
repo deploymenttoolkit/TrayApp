@@ -96,5 +96,14 @@ namespace DeploymentToolkit.TrayApp
             });
             Program.CloseForm(this);
         }
+
+        private void ButtonLater_Click(object sender, EventArgs e)
+        {
+            Program.SendMessage(new AbortMessage()
+            {
+                DeploymentStep = Modals.DeploymentStep.Restart
+            });
+            Program.CloseForm(this);
+        }
     }
 }
