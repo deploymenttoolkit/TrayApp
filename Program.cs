@@ -217,133 +217,139 @@ namespace DeploymentToolkit.TrayApp
         private static void OnNewMessage(object sender, NewMessageEventArgs e)
         {
             // You are not in the Main form thread here !!!
-            
-            switch(e.MessageId)
+            try
             {
-                case MessageId.DeploymentInformationMessage:
-                    {
-                        _logger.Trace("Received DeploymentInformationMessage");
-                        DeploymentInformation = e.Message as DeploymentInformationMessage;
-
-                        _logger.Trace($"Deploymentmethod: {DeploymentInformation.SequenceType}");
-                        _logger.Trace($"Deploymentname: {DeploymentInformation.DeploymentName}");
-                    }
-                    break;
-
-                case MessageId.DeploymentStarted:
-                case MessageId.DeploymentSuccess:
-                case MessageId.DeploymentError:
-                    {
-                        var language = LanguageManager.Language;
-                        var text = DeploymentInformation.SequenceType == SequenceType.Installation
-                            ? language.DeploymentType_Install
-                            : language.DeploymentType_UnInstall;
-                        text += " ";
-                        var icon = ToolTipIcon.Info;
-
-                        if (e.MessageId == MessageId.DeploymentStarted)
+                switch (e.MessageId)
+                {
+                    case MessageId.DeploymentInformationMessage:
                         {
-                            text += language.BalloonText_Start;
+                            _logger.Trace("Received DeploymentInformationMessage");
+                            DeploymentInformation = e.Message as DeploymentInformationMessage;
+
+                            _logger.Trace($"Deploymentmethod: {DeploymentInformation.SequenceType}");
+                            _logger.Trace($"Deploymentname: {DeploymentInformation.DeploymentName}");
                         }
-                        else if(e.MessageId == MessageId.DeploymentSuccess)
+                        break;
+
+                    case MessageId.DeploymentStarted:
+                    case MessageId.DeploymentSuccess:
+                    case MessageId.DeploymentError:
                         {
-                            text += language.BalloonText_Complete;
+                            var language = LanguageManager.Language;
+                            var text = DeploymentInformation.SequenceType == SequenceType.Installation
+                                ? language.DeploymentType_Install
+                                : language.DeploymentType_UnInstall;
+                            text += " ";
+                            var icon = ToolTipIcon.Info;
+
+                            if (e.MessageId == MessageId.DeploymentStarted)
+                            {
+                                text += language.BalloonText_Start;
+                            }
+                            else if (e.MessageId == MessageId.DeploymentSuccess)
+                            {
+                                text += language.BalloonText_Complete;
+                            }
+                            else if (e.MessageId == MessageId.DeploymentError)
+                            {
+                                icon = ToolTipIcon.Error;
+                                text += language.BalloonText_Error;
+                            }
+
+                            _logger.Trace($"Icon: {icon}");
+                            _logger.Trace($"Final balloon tip text: {text}");
+
+                            FormAppList.Invoke((Action)delegate ()
+                            {
+                                TrayIcon.BalloonTipIcon = icon;
+                                TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
+                                TrayIcon.BalloonTipText = text;
+                                TrayIcon.ShowBalloonTip(10000);
+                            });
                         }
-                        else if(e.MessageId == MessageId.DeploymentError)
-                        {
-                            icon = ToolTipIcon.Error;
-                            text += language.BalloonText_Error;
-                        }
+                        break;
 
-                        _logger.Trace($"Icon: {icon}");
-                        _logger.Trace($"Final balloon tip text: {text}");
-
-                        FormAppList.Invoke((Action)delegate ()
+                    case MessageId.DeploymentRestart:
                         {
-                            TrayIcon.BalloonTipIcon = icon;
-                            TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
-                            TrayIcon.BalloonTipText = text;
-                            TrayIcon.ShowBalloonTip(10000);
-                        });
-                    }
-                    break;
-
-                case MessageId.DeploymentRestart:
-                    {
-                        var message = e.Message as DeploymentRestartMessage;
-                        FormAppList.Invoke((Action)delegate ()
-                        {
+                            var message = e.Message as DeploymentRestartMessage;
+                            FormAppList.Invoke((Action)delegate ()
+                            {
 #if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
 
                             if (FormRestart != null && !FormRestart.IsDisposed)
-                                FormRestart.Dispose();
+                                    FormRestart.Dispose();
 
-                            FormRestart = new RestartDialog(message.TimeUntilForceRestart);
-                            FormRestart.Show();
-                        });
-                    }
-                    break;
-
-                case MessageId.DeploymentLogoff:
-                    {
-                        var message = e.Message as DeploymentLogoffMessage;
-
-                        FormAppList.Invoke((Action)delegate ()
-                        {
-                            TrayIcon.BalloonTipIcon = ToolTipIcon.Warning;
-                            TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
-                            TrayIcon.BalloonTipText = $"You will be logged off in {message.TimeUntilForceLogoff} seconds";
-                            TrayIcon.ShowBalloonTip(10000);
-
-                            System.Threading.Tasks.Task.Factory.StartNew(async () =>
-                            {
-                                await System.Threading.Tasks.Task.Delay(message.TimeUntilForceLogoff * 1000);
-                                Utils.PowerUtil.Logoff();
+                                FormRestart = new RestartDialog(message.TimeUntilForceRestart);
+                                FormRestart.Show();
                             });
-                        });
-                    }
-                    break;
+                        }
+                        break;
 
-                case MessageId.CloseApplications:
-                    {
-                        var message = e.Message as CloseApplicationsMessage;
-                        FormAppList.Invoke((Action)delegate ()
+                    case MessageId.DeploymentLogoff:
                         {
+                            var message = e.Message as DeploymentLogoffMessage;
+
+                            FormAppList.Invoke((Action)delegate ()
+                            {
+                                TrayIcon.BalloonTipIcon = ToolTipIcon.Warning;
+                                TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
+                                TrayIcon.BalloonTipText = $"You will be logged off in {message.TimeUntilForceLogoff} seconds";
+                                TrayIcon.ShowBalloonTip(10000);
+
+                                System.Threading.Tasks.Task.Factory.StartNew(async () =>
+                                {
+                                    await System.Threading.Tasks.Task.Delay(message.TimeUntilForceLogoff * 1000);
+                                    Utils.PowerUtil.Logoff();
+                                });
+                            });
+                        }
+                        break;
+
+                    case MessageId.CloseApplications:
+                        {
+                            var message = e.Message as CloseApplicationsMessage;
+                            FormAppList.Invoke((Action)delegate ()
+                            {
 #if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
 
                             if (FormCloseApplication != null && !FormCloseApplication.IsDisposed)
-                                FormCloseApplication.Dispose();
+                                    FormCloseApplication.Dispose();
 
-                            FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
-                            FormCloseApplication.Show();
-                        });
-                    }
-                    break;
+                                FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
+                                FormCloseApplication.Show();
+                            });
+                        }
+                        break;
 
-                case MessageId.DeferDeployment:
-                    {
-                        var message = e.Message as DeferMessage;
-                        FormAppList.Invoke((Action)delegate ()
+                    case MessageId.DeferDeployment:
                         {
+                            var message = e.Message as DeferMessage;
+                            FormAppList.Invoke((Action)delegate ()
+                            {
 #if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
 
                             if (FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
-                                FormCloseApplication.Dispose();
+                                    FormCloseApplication.Dispose();
 
-                            FormDeploymentDeferal = new DeploymentDeferal(message.RemainingDays, message.DeadLine);
-                            FormDeploymentDeferal.Show();
-                        });
-                    }
-                    break;
+                                FormDeploymentDeferal = new DeploymentDeferal(message.RemainingDays, message.DeadLine);
+                                FormDeploymentDeferal.Show();
+                            });
+                        }
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                _logger.Fatal(ex, "Failed to process message");
             }
         }
 
