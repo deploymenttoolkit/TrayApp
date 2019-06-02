@@ -222,6 +222,7 @@ namespace DeploymentToolkit.TrayApp
 
         private static void OnNewMessage(object sender, NewMessageEventArgs e)
         {
+            // NOT ON GUI THREAD !!
             try
             {
                 switch (e.MessageId)
@@ -264,27 +265,32 @@ namespace DeploymentToolkit.TrayApp
                             _logger.Trace($"Icon: {icon}");
                             _logger.Trace($"Final balloon tip text: {text}");
 
-
-                            TrayIcon.BalloonTipIcon = icon;
-                            TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
-                            TrayIcon.BalloonTipText = text;
-                            TrayIcon.ShowBalloonTip(10000);
+                            FormAppList.Invoke((Action)delegate ()
+                            {
+                                TrayIcon.BalloonTipIcon = icon;
+                                TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
+                                TrayIcon.BalloonTipText = text;
+                                TrayIcon.ShowBalloonTip(10000);
+                            });
                         }
                         break;
 
                     case MessageId.DeploymentRestart:
                         {
                             var message = e.Message as DeploymentRestartMessage;
+                            FormAppList.Invoke((Action)delegate ()
+                            {
 #if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
 
-                            if (FormRestart != null && !FormRestart.IsDisposed)
-                                FormRestart.Dispose();
+                                if (FormRestart != null && !FormRestart.IsDisposed)
+                                    FormRestart.Dispose();
 
-                            FormRestart = new RestartDialog(message.TimeUntilForceRestart);
-                            FormRestart.Show();
+                                FormRestart = new RestartDialog(message.TimeUntilForceRestart);
+                                FormRestart.Show();
+                            });
                         }
                         break;
 
@@ -315,12 +321,14 @@ namespace DeploymentToolkit.TrayApp
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
+                            FormAppList.Invoke((Action)delegate ()
+                            {
+                                if (FormCloseApplication != null && !FormCloseApplication.IsDisposed)
+                                    FormCloseApplication.Dispose();
 
-                            if (FormCloseApplication != null && !FormCloseApplication.IsDisposed)
-                                FormCloseApplication.Dispose();
-
-                            FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
-                            FormCloseApplication.Show();
+                                FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
+                                FormCloseApplication.Show();
+                            });
                         }
                         break;
 
