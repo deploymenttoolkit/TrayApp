@@ -179,24 +179,23 @@ namespace DeploymentToolkit.TrayApp
 
                         foreach (var process in processes)
                         {
-                            process.Refresh();
-                            if (process.HasExited)
-                            {
-                                _logger.Trace($"Skipping [{process.Id}]{process.ProcessName} as it seems to be closed");
-                                continue;
-                            }
-
                             try
                             {
-                                _logger.Trace($"Trying to close [{process.Id}]{process.ProcessName} gracefully");
+                                process.Refresh();
+                                if (process.HasExited)
+                                {
+                                    _logger.Trace($"Skipping [{process.Id}]{process.ProcessName} as it seems to be closed");
+                                    continue;
+                                }
+
+                                _logger.Info($"Trying to close [{process.Id}]{process.ProcessName} gracefully");
                                 // Send a WM_CLOSE and wait for a gracefull exit
                                 PostMessage(process.Handle, 0x0010, IntPtr.Zero, IntPtr.Zero);
                                 if (!process.WaitForExit(5000))
                                 {
-                                    _logger.Trace($"[{process.Id}]{process.ProcessName} did not close after being instructed. Killing...");
+                                    _logger.Info($"[{process.Id}]{process.ProcessName} did not close after being instructed. Killing...");
                                     process.Kill();
                                 }
-
                             }
                             catch (Exception ex)
                             {
