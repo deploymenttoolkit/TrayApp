@@ -115,6 +115,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DeploymentToolkit.Deployment\DeploymentToolkit.Environment\DeploymentToolkit.ToolkitEnvironment.csproj">
+      <Project>{94c074c7-cae2-423e-84b7-80d5b74602bb}</Project>
+      <Name>DeploymentToolkit.ToolkitEnvironment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DeploymentToolkit.Deployment\DeploymentToolkit.Messaging\DeploymentToolkit.Messaging.csproj">
       <Project>{65AC59C5-F17A-4F96-97B2-B0ECB4304C3B}</Project>
       <Name>DeploymentToolkit.Messaging</Name>

@@ -57,6 +57,8 @@ namespace DeploymentToolkit.TrayApp
 
         private static PipeServer _pipeServer;
 
+        private static Process _blockerProcess;
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -164,7 +166,12 @@ namespace DeploymentToolkit.TrayApp
                 DeploymentInformation = new DeploymentInformationMessage()
                 {
                     DeploymentName = "DEBUG",
-                    SequenceType = SequenceType.Installation
+                    SequenceType = SequenceType.Installation,
+                    DisplaySettings = new Modals.Settings.DisplaySettings()
+                    {
+                        BlockScreensDuringInstallation = false,
+                        PersistentPrompt = false
+                    }
                 };
             }
 
@@ -241,6 +248,16 @@ namespace DeploymentToolkit.TrayApp
                     case MessageId.DeploymentSuccess:
                     case MessageId.DeploymentError:
                         {
+                            if (e.MessageId == MessageId.DeploymentStarted && DeploymentInformation.DisplaySettings.BlockScreensDuringInstallation)
+                            {
+                                _logger.Trace("BlockScreensDuringInstallation specified. Blocking ...");
+                                BlockScreen();
+                            }
+                            else
+                            {
+                                UnblockScreen();
+                            }
+
                             var language = LanguageManager.Language;
                             var text = DeploymentInformation.SequenceType == SequenceType.Installation
                                 ? language.DeploymentType_Install
@@ -354,6 +371,36 @@ namespace DeploymentToolkit.TrayApp
             catch(Exception ex)
             {
                 _logger.Fatal(ex, "Failed to process message");
+            }
+        }
+
+        private static void BlockScreen()
+        {
+            _blockerProcess = new Process()
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = ToolkitEnvironment.EnvironmentVariables.DeploymentToolkitBlockerExePath
+                }
+            };
+
+            _blockerProcess.Start();
+
+            _logger.Trace($"Startec blocker with process id {_blockerProcess.Id}");
+        }
+
+        private static void UnblockScreen()
+        {
+            if(_blockerProcess == null)
+            {
+                _logger.Trace("Not block process started. Skipping unblock ...");
+                return;
+            }
+
+            if(!_blockerProcess.HasExited)
+            {
+                _logger.Trace("Killing blocker ...");
+                _blockerProcess.Kill();
             }
         }
 
