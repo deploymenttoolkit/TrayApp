@@ -35,6 +35,17 @@ namespace DeploymentToolkit.TrayApp
             this.AddLogo(PictureLogo);
         }
 
+        protected override void SetVisibleCore(bool value)
+        {
+            if(Program.StartUp)
+            {
+                Program.StartUp = false;
+                base.SetVisibleCore(false);
+                return;
+            }
+            base.SetVisibleCore(value);
+        }
+
         private void AppList_Load(object sender, EventArgs e)
         {
 

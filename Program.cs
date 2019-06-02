@@ -4,6 +4,7 @@ using DeploymentToolkit.Messaging.Messages;
 using DeploymentToolkit.Modals;
 using NLog;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -14,13 +15,15 @@ namespace DeploymentToolkit.TrayApp
 {
     static class Program
     {
+        public static bool StartUp = false;
+
         public static AppList FormAppList;
         public static CloseApplication FormCloseApplication;
         public static DeploymentDeferal FormDeploymentDeferal;
         public static RestartDialog FormRestart;
 
         public static LanguageManager LanguageManager;
-
+        
         public static NotifyIcon TrayIcon;
 
         public static MenuItem MenuItemExit;
@@ -205,7 +208,10 @@ namespace DeploymentToolkit.TrayApp
             if (args.Any(a => a.ToLower() == "--startup"))
             {
                 _logger.Info("Detected '--startup' commandline. Starting application in Tray only");
-                Application.Run();
+                StartUp = true;
+                // create handles
+                var handle = FormAppList.Handle;
+                Application.Run(FormAppList);
             }
             else
             {
@@ -216,7 +222,6 @@ namespace DeploymentToolkit.TrayApp
 
         private static void OnNewMessage(object sender, NewMessageEventArgs e)
         {
-            // You are not in the Main form thread here !!!
             try
             {
                 switch (e.MessageId)
@@ -259,32 +264,27 @@ namespace DeploymentToolkit.TrayApp
                             _logger.Trace($"Icon: {icon}");
                             _logger.Trace($"Final balloon tip text: {text}");
 
-                            FormAppList.Invoke((Action)delegate ()
-                            {
-                                TrayIcon.BalloonTipIcon = icon;
-                                TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
-                                TrayIcon.BalloonTipText = text;
-                                TrayIcon.ShowBalloonTip(10000);
-                            });
+
+                            TrayIcon.BalloonTipIcon = icon;
+                            TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
+                            TrayIcon.BalloonTipText = text;
+                            TrayIcon.ShowBalloonTip(10000);
                         }
                         break;
 
                     case MessageId.DeploymentRestart:
                         {
                             var message = e.Message as DeploymentRestartMessage;
-                            FormAppList.Invoke((Action)delegate ()
-                            {
 #if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
 
                             if (FormRestart != null && !FormRestart.IsDisposed)
-                                    FormRestart.Dispose();
+                                FormRestart.Dispose();
 
-                                FormRestart = new RestartDialog(message.TimeUntilForceRestart);
-                                FormRestart.Show();
-                            });
+                            FormRestart = new RestartDialog(message.TimeUntilForceRestart);
+                            FormRestart.Show();
                         }
                         break;
 
@@ -311,33 +311,29 @@ namespace DeploymentToolkit.TrayApp
                     case MessageId.CloseApplications:
                         {
                             var message = e.Message as CloseApplicationsMessage;
-                            FormAppList.Invoke((Action)delegate ()
-                            {
 #if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
 
                             if (FormCloseApplication != null && !FormCloseApplication.IsDisposed)
-                                    FormCloseApplication.Dispose();
+                                FormCloseApplication.Dispose();
 
-                                FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
-                                FormCloseApplication.Show();
-                            });
+                            FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
+                            FormCloseApplication.Show();
                         }
                         break;
 
                     case MessageId.DeferDeployment:
                         {
                             var message = e.Message as DeferMessage;
-                            FormAppList.Invoke((Action)delegate ()
-                            {
 #if !DEBUG
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
-
-                            if (FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
+                            FormAppList.Invoke((Action)delegate()
+                            {
+                                if (FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
                                     FormCloseApplication.Dispose();
 
                                 FormDeploymentDeferal = new DeploymentDeferal(message.RemainingDays, message.DeadLine);
