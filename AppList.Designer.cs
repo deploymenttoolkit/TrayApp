@@ -61,8 +61,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.AppView);
             this.groupBox1.Location = new System.Drawing.Point(9, 118);
@@ -74,7 +74,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.ButtonInstallAll);
             this.groupBox2.Controls.Add(this.ButtonInstallSelected);
@@ -105,7 +105,7 @@
             // 
             // PictureLogo
             // 
-            this.PictureLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PictureLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PictureLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureLogo.ErrorImage = null;
@@ -131,7 +131,6 @@
             this.ShowIcon = false;
             this.Text = "DeploymentToolkit TrayApp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppList_FormClosing);
-            this.Load += new System.EventHandler(this.AppList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AppView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

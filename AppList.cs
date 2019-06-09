@@ -12,6 +12,7 @@ namespace DeploymentToolkit.TrayApp
         public BindingSource BindingSource;
 
         private List<App> _apps = new List<App>();
+        private List<DeferedDeployment> _deferedDeployments = new List<DeferedDeployment>();
 
         private Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -46,21 +47,13 @@ namespace DeploymentToolkit.TrayApp
             base.SetVisibleCore(value);
         }
 
-        private void AppList_Load(object sender, EventArgs e)
+        protected override void OnVisibleChanged(EventArgs e)
         {
-
-            // Testing only
-            //for(int i = 0; i < 200; i++)
-            //{
-            //    BindingSource.Add(new App()
-            //    {
-            //        ID = $"ID-{i}",
-            //        AppName = $"Test-{i}",
-            //        DeferTimes = "None",
-            //        DeferDays = "None",
-            //        DeferDeadline = DateTime.Now.ToLongDateString()
-            //    });
-            //}
+            if (Visible)
+            {
+                LoadDeferedDeployments();
+            }
+            base.OnVisibleChanged(e);
         }
 
         private void AppList_FormClosing(object sender, FormClosingEventArgs e)
@@ -69,6 +62,26 @@ namespace DeploymentToolkit.TrayApp
             e.Cancel = true;
 
             Program.HideAppList();
+        }
+
+        private void LoadDeferedDeployments()
+        {
+            _deferedDeployments = ToolkitEnvironment.RegistryManager.GetAllDeferedDeployments();
+            _logger.Trace($"Found {_deferedDeployments.Count} defered deployments");
+
+            BindingSource.Clear();
+
+            for (var i = 0; i < _deferedDeployments.Count; i++)
+            {
+                var deployment = _deferedDeployments[i];
+                BindingSource.Add(new App()
+                {
+                    ID = i,
+                    AppName = deployment.Name,
+                    RemainingDays = deployment.RemainingDays != -1 ? deployment.RemainingDays.ToString() : string.Empty,
+                    Deadline = deployment.Deadline != DateTime.MinValue ? deployment.Deadline.ToString() : string.Empty
+                });
+            }
         }
     }
 }
