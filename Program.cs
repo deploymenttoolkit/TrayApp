@@ -4,7 +4,6 @@ using DeploymentToolkit.Messaging.Messages;
 using DeploymentToolkit.Modals;
 using NLog;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -23,7 +22,7 @@ namespace DeploymentToolkit.TrayApp
         public static RestartDialog FormRestart;
 
         public static LanguageManager LanguageManager;
-        
+
         public static NotifyIcon TrayIcon;
 
         public static MenuItem MenuItemExit;
@@ -69,7 +68,7 @@ namespace DeploymentToolkit.TrayApp
             {
                 Logging.LogManager.Initialize("Tray");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Failed to initialize logging");
                 Debug.WriteLine(ex);
@@ -81,7 +80,7 @@ namespace DeploymentToolkit.TrayApp
 
             var ownProcess = Process.GetCurrentProcess();
             var openProcesses = Process.GetProcessesByName(ownProcess.ProcessName).Where(p => p.SessionId == ownProcess.SessionId);
-            if(openProcesses.Count() > 1)
+            if (openProcesses.Count() > 1)
             {
                 // There is already another process in this session. Just exit
                 _logger.Info($"Another instance of {ownProcess.ProcessName} is already running. Exiting...");
@@ -93,7 +92,7 @@ namespace DeploymentToolkit.TrayApp
             {
                 LanguageManager = new LanguageManager();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.Fatal(ex, "Failed to create LanaugeManager. Exiting...");
                 Environment.Exit(-1);
@@ -154,7 +153,7 @@ namespace DeploymentToolkit.TrayApp
                     Index = 3,
                     Text = "DEBUG: View DeploymentDeferal"
                 };
-                item.Click += delegate(object sender, EventArgs e)
+                item.Click += delegate (object sender, EventArgs e)
                 {
                     FormDeploymentDeferal?.Dispose();
                     FormDeploymentDeferal = new DeploymentDeferal(1, DateTime.Now.AddDays(7));
@@ -183,7 +182,7 @@ namespace DeploymentToolkit.TrayApp
                 };
                 item.Click += delegate (object sender, EventArgs e)
                 {
-                    Utils.PowerUtil.Logoff();
+                    Util.PowerUtil.Logoff();
                 };
                 contextMenu.MenuItems.Add(item);
             }
@@ -196,7 +195,7 @@ namespace DeploymentToolkit.TrayApp
                 };
                 item.Click += delegate (object sender, EventArgs e)
                 {
-                    Utils.PowerUtil.Restart();
+                    Util.PowerUtil.Restart();
                 };
                 contextMenu.MenuItems.Add(item);
             }
@@ -298,8 +297,8 @@ namespace DeploymentToolkit.TrayApp
                             FormAppList.Invoke((Action)delegate ()
                             {
 #if !DEBUG
-                            // Disable exit of the program
-                            MenuItemExit.Enabled = false;
+                                // Disable exit of the program
+                                MenuItemExit.Enabled = false;
 #endif
 
                                 if (FormRestart != null && !FormRestart.IsDisposed)
@@ -325,7 +324,7 @@ namespace DeploymentToolkit.TrayApp
                                 System.Threading.Tasks.Task.Factory.StartNew(async () =>
                                 {
                                     await System.Threading.Tasks.Task.Delay(message.TimeUntilForceLogoff * 1000);
-                                    Utils.PowerUtil.Logoff();
+                                    Util.PowerUtil.Logoff();
                                 });
                             });
                         }
@@ -356,7 +355,7 @@ namespace DeploymentToolkit.TrayApp
                             // Disable exit of the program
                             MenuItemExit.Enabled = false;
 #endif
-                            FormAppList.Invoke((Action)delegate()
+                            FormAppList.Invoke((Action)delegate ()
                             {
                                 if (FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
                                     FormCloseApplication.Dispose();
@@ -368,7 +367,7 @@ namespace DeploymentToolkit.TrayApp
                         break;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.Fatal(ex, "Failed to process message");
             }
@@ -391,13 +390,13 @@ namespace DeploymentToolkit.TrayApp
 
         private static void UnblockScreen()
         {
-            if(_blockerProcess == null)
+            if (_blockerProcess == null)
             {
                 _logger.Trace("Not block process started. Skipping unblock ...");
                 return;
             }
 
-            if(!_blockerProcess.HasExited)
+            if (!_blockerProcess.HasExited)
             {
                 _logger.Trace("Killing blocker ...");
                 _blockerProcess.Kill();
@@ -410,7 +409,7 @@ namespace DeploymentToolkit.TrayApp
             {
                 _pipeServer.SendMessage(message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.Error(ex, "Failed to communicate with deployment");
             }
@@ -425,7 +424,7 @@ namespace DeploymentToolkit.TrayApp
                 FormAppList.Dispose();
                 TrayIcon.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.Error(ex, "Failed to gracefully close application");
             }
@@ -435,7 +434,7 @@ namespace DeploymentToolkit.TrayApp
 
         private static void ToggleTrayAppClicked(object sender, EventArgs e)
         {
-            if(FormAppList.IsDisposed || FormAppList == null)
+            if (FormAppList.IsDisposed || FormAppList == null)
             {
                 _logger.Warn("AppList seems to be completly closed. Recreating form");
                 FormAppList = null;

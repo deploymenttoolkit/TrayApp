@@ -24,7 +24,7 @@ namespace DeploymentToolkit.TrayApp
             BindingSource = new BindingSource() { DataSource = _apps };
             AppView.DataSource = BindingSource;
 
-            _logger.Trace("Preparting table...");
+            _logger.Trace("Preparing table...");
             for (int i = 0; i < AppView.Columns.Count; i++)
             {
                 AppView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -37,7 +37,7 @@ namespace DeploymentToolkit.TrayApp
 
         protected override void SetVisibleCore(bool value)
         {
-            if(Program.StartUp)
+            if (Program.StartUp)
             {
                 Program.StartUp = false;
                 base.SetVisibleCore(false);
