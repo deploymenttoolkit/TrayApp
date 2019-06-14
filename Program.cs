@@ -16,6 +16,8 @@ namespace DeploymentToolkit.TrayApp
     {
         public static bool StartUp = false;
 
+        public static Form CurrentDialog;
+
         public static AppList FormAppList;
         public static CloseApplication FormCloseApplication;
         public static DeploymentDeferal FormDeploymentDeferal;
@@ -142,7 +144,7 @@ namespace DeploymentToolkit.TrayApp
                 {
                     FormCloseApplication?.Dispose();
                     FormCloseApplication = new CloseApplication(new[] { "cmd.exe" }, 0);
-                    FormCloseApplication.Show();
+                    ShowForm(FormCloseApplication);
                 };
                 contextMenu.MenuItems.Add(item);
             }
@@ -157,7 +159,7 @@ namespace DeploymentToolkit.TrayApp
                 {
                     FormDeploymentDeferal?.Dispose();
                     FormDeploymentDeferal = new DeploymentDeferal(1, DateTime.Now.AddDays(7));
-                    FormDeploymentDeferal.Show();
+                    ShowForm(FormDeploymentDeferal);
                 };
                 contextMenu.MenuItems.Add(item);
 
@@ -305,7 +307,7 @@ namespace DeploymentToolkit.TrayApp
                                     FormRestart.Dispose();
 
                                 FormRestart = new RestartDialog(message.TimeUntilForceRestart);
-                                FormRestart.Show();
+                                ShowForm(FormRestart);
                             });
                         }
                         break;
@@ -343,7 +345,7 @@ namespace DeploymentToolkit.TrayApp
                                     FormCloseApplication.Dispose();
 
                                 FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
-                                FormCloseApplication.Show();
+                                ShowForm(FormCloseApplication);
                             });
                         }
                         break;
@@ -358,10 +360,10 @@ namespace DeploymentToolkit.TrayApp
                             FormAppList.Invoke((Action)delegate ()
                             {
                                 if (FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
-                                    FormCloseApplication.Dispose();
+                                    FormDeploymentDeferal.Dispose();
 
                                 FormDeploymentDeferal = new DeploymentDeferal(message.RemainingDays, message.DeadLine);
-                                FormDeploymentDeferal.Show();
+                                ShowForm(FormDeploymentDeferal);
                             });
                         }
                         break;
@@ -461,6 +463,21 @@ namespace DeploymentToolkit.TrayApp
             MenuItemToggleVisibility.Text = "Hide";
             FormAppList.Show();
             _logger.Trace("Executed ShowAppList");
+        }
+
+        internal static void ShowForm(Form form)
+        {
+            if (CurrentDialog != null)
+            {
+                CloseForm(CurrentDialog);
+            }
+
+            var type = form.GetType();
+            var name = type.Name;
+            _logger.Info($"Closing form {name}");
+
+            form.Show();
+            CurrentDialog = form;
         }
 
         internal static void CloseForm(Form form)
