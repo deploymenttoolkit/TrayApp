@@ -1,5 +1,5 @@
 ﻿using DeploymentToolkit.Modals;
-using DeploymentToolkit.Modals.Settings;
+using DeploymentToolkit.Util;
 using Microsoft.Win32;
 using NLog;
 using System;
@@ -49,7 +49,7 @@ namespace DeploymentToolkit.TrayApp
                 @"LocaleName"
             }
         };
-   
+
         internal LanguageManager()
         {
             _logger.Trace("Initializing LanguageManager ...");
@@ -73,29 +73,29 @@ namespace DeploymentToolkit.TrayApp
                 var language = CultureInfo.GetCultureInfo(_languageName);
                 _languageName = language.TwoLetterISOLanguageName.ToUpper();
 
-                if(_languageName == "ZH")
+                if (_languageName == "ZH")
                 {
-                    if(language.EnglishName.Contains("Simplified"))
+                    if (language.EnglishName.Contains("Simplified"))
                     {
                         _languageName = "ZH-Hans";
                         _logger.Trace("Detected Chinese Simplified");
                     }
-                    else if(language.EnglishName.Contains("Traditional"))
+                    else if (language.EnglishName.Contains("Traditional"))
                     {
                         _languageName = "ZH-Hant";
                         _logger.Trace("Detected Chinese Traditional");
                     }
                 }
-                else if(_languageName == "PT")
+                else if (_languageName == "PT")
                 {
-                    if(language.ThreeLetterWindowsLanguageName == "PTB")
+                    if (language.ThreeLetterWindowsLanguageName == "PTB")
                     {
                         _languageName = "PT-BR";
                         _logger.Trace("Detected Brazilian Portuguese");
                     }
                 }
             }
-            catch(CultureNotFoundException)
+            catch (CultureNotFoundException)
             {
                 _logger.Warn($"Failed to find language for {_languageName}. Using EN");
                 _languageName = "EN";
@@ -103,7 +103,7 @@ namespace DeploymentToolkit.TrayApp
 
             var filePath = Path.Combine(_languagesPath, $"UI_Messages_{_languageName}.xml");
             _logger.Trace($"Searching for language ({filePath})");
-            if(File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 LoadLanguageStringsFromXml(filePath);
             }
@@ -126,10 +126,10 @@ namespace DeploymentToolkit.TrayApp
         {
             try
             {
-                Language = XML.ReadXml<Language>(filePath);
+                Language = Xml.ReadXml<Language>(filePath);
                 _logger.Info($"Successfully loaded language files for {_languageName}");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.Fatal(ex, "Failed to read language file");
             }
@@ -137,7 +137,7 @@ namespace DeploymentToolkit.TrayApp
 
         private void GetLanguageFromRegistry()
         {
-            foreach(var registryPair in _registryLanguagePaths)
+            foreach (var registryPair in _registryLanguagePaths)
             {
                 try
                 {
@@ -149,10 +149,10 @@ namespace DeploymentToolkit.TrayApp
                     var value = registryPair.Value;
 
                     var registryKey = registryRoot.OpenSubKey(path);
-                    if(registryKey != null)
+                    if (registryKey != null)
                     {
                         var language = (string[])registryKey.GetValue(value, new string[0]);
-                        if(language.Length > 0)
+                        if (language.Length > 0)
                         {
                             _languageName = language[0];
                             _logger.Trace($"Using {_languageName} as UI language");
@@ -160,17 +160,17 @@ namespace DeploymentToolkit.TrayApp
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.Warn(ex, $"Failed to read from registry ({registryPair.Key}/{registryPair.Value})");
                 }
             }
 
             var xpLanguageRoot = Registry.CurrentUser.OpenSubKey(@"Control Panel\International");
-            if(xpLanguageRoot != null)
+            if (xpLanguageRoot != null)
             {
                 var locale = (string)xpLanguageRoot.GetValue("Locale", string.Empty);
-                if(!string.IsNullOrEmpty(locale))
+                if (!string.IsNullOrEmpty(locale))
                 {
                     var localeNumber = Convert.ToInt32($"0x{locale}", 16);
                     try
@@ -179,11 +179,11 @@ namespace DeploymentToolkit.TrayApp
                         _languageName = language.Name;
                         return;
                     }
-                    catch(CultureNotFoundException)
+                    catch (CultureNotFoundException)
                     {
                         _logger.Warn($"Failed to find culture {locale}->{localeNumber}");
                     }
-                    catch(ArgumentOutOfRangeException)
+                    catch (ArgumentOutOfRangeException)
                     {
                         _logger.Warn($"Failed to find culture {locale}->{localeNumber}");
                     }
