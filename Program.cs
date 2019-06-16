@@ -513,6 +513,7 @@ namespace DeploymentToolkit.TrayApp
             var name = type.Name;
 
             form.Dispose();
+            CurrentDialog = null;
 
             _logger.Info($"Closing form {name}");
         }
