@@ -486,7 +486,7 @@ namespace DeploymentToolkit.TrayApp
 
             var type = form.GetType();
             var name = type.Name;
-            _logger.Info($"Closing form {name}");
+            _logger.Info($"Showing form {name}");
 
             form.Show();
             CurrentDialog = form;
