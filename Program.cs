@@ -16,6 +16,7 @@ namespace DeploymentToolkit.TrayApp
     static class Program
     {
         public static bool StartUp = false;
+        public static bool StartUpParameter = false;
 
         public static TrayAppSettings Settings;
 
@@ -82,6 +83,7 @@ namespace DeploymentToolkit.TrayApp
             }
 
             _logger.Info($"{Namespace} v{Version} initializing...");
+            _logger.Debug($"ComamndLine: {Environment.CommandLine}");
 
             var ownProcess = Process.GetCurrentProcess();
             var openProcesses = Process.GetProcessesByName(ownProcess.ProcessName).Where(p => p.SessionId == ownProcess.SessionId);
@@ -181,7 +183,7 @@ namespace DeploymentToolkit.TrayApp
                 {
                     DeploymentName = "DEBUG",
                     SequenceType = SequenceType.Installation,
-                    DisplaySettings = new Modals.Settings.DisplaySettings()
+                    DisplaySettings = new DisplaySettings()
                     {
                         BlockScreensDuringInstallation = false,
                         PersistentPrompt = false
@@ -226,9 +228,10 @@ namespace DeploymentToolkit.TrayApp
             _pipeServer.OnNewMessage += OnNewMessage;
 
             _logger.Trace("Checking commandline arguments...");
+            StartUpParameter = args.Any(a => a.ToLower() == "--requested");
             if (args.Any(a => a.ToLower() == "--startup") || !Settings.EnableAppList)
             {
-                _logger.Info("Detected '--startup' commandline or EnableAppList is set to false. Starting application in Tray only");
+                _logger.Info($"Detected '--startup' commandline or EnableAppList is set to false. Starting application in Tray only ({args.Any(a => a.ToLower() == "--startup")}/{StartUpParameter}/{Settings.EnableAppList})");
                 StartUp = true;
                 // create handles
                 var handle = FormAppList.Handle;
@@ -484,12 +487,22 @@ namespace DeploymentToolkit.TrayApp
                 CloseForm(CurrentDialog);
             }
 
+            if (StartUpParameter)
+            {
+                // I don't know why the fuck this is necessary.
+                // But when started by the Toolkit (and not autostart) the first form is just not shown. Who the fuck knows why
+                // So we just show it twice. And that works. Why? IDK.
+                StartUpParameter = false;
+                ShowForm(form);
+            }
+
             var type = form.GetType();
             var name = type.Name;
-            _logger.Info($"Showing form {name}");
 
             form.Show();
             CurrentDialog = form;
+
+            _logger.Info($"Showing form {name}");
         }
 
         internal static void CloseForm(Form form)
@@ -498,8 +511,10 @@ namespace DeploymentToolkit.TrayApp
                 return;
             var type = form.GetType();
             var name = type.Name;
-            _logger.Info($"Closing form {name}");
+
             form.Dispose();
+
+            _logger.Info($"Closing form {name}");
         }
     }
 }
