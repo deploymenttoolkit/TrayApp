@@ -2,6 +2,7 @@
 using DeploymentToolkit.Messaging.Events;
 using DeploymentToolkit.Messaging.Messages;
 using DeploymentToolkit.Modals;
+using DeploymentToolkit.Modals.Settings;
 using NLog;
 using System;
 using System.Diagnostics;
@@ -15,6 +16,8 @@ namespace DeploymentToolkit.TrayApp
     static class Program
     {
         public static bool StartUp = false;
+
+        public static TrayAppSettings Settings;
 
         public static Form CurrentDialog;
 
@@ -89,6 +92,9 @@ namespace DeploymentToolkit.TrayApp
                 Environment.Exit(0);
             }
 
+            _logger.Trace("Reading settings ...");
+            Settings = ToolkitEnvironment.Settings.GetTrayAppSettings();
+
             _logger.Trace("Creating LanguageManager...");
             try
             {
@@ -113,16 +119,23 @@ namespace DeploymentToolkit.TrayApp
             _logger.Trace("Creating ContextMenu...");
             var contextMenu = new ContextMenu();
 
-            _logger.Trace("Creating MenuItem...");
-            MenuItemToggleVisibility = new MenuItem
+            if (Settings.EnableAppList)
             {
-                Index = 0,
-                Text = "Show"
-            };
-            MenuItemToggleVisibility.Click += ToggleTrayAppClicked;
-            contextMenu.MenuItems.Add(MenuItemToggleVisibility);
+                _logger.Trace("Creating Show MenuItem...");
+                MenuItemToggleVisibility = new MenuItem
+                {
+                    Index = 0,
+                    Text = "Show"
+                };
+                MenuItemToggleVisibility.Click += ToggleTrayAppClicked;
+                contextMenu.MenuItems.Add(MenuItemToggleVisibility);
+            }
+            else
+            {
+                _logger.Debug("AppList not enabled. Not creating 'Show' MenuItem");
+            }
 
-            _logger.Trace("Creating MenuItem...");
+            _logger.Trace("Creating Close MenuItem...");
             MenuItemExit = new MenuItem
             {
                 Index = 1,
@@ -213,9 +226,9 @@ namespace DeploymentToolkit.TrayApp
             _pipeServer.OnNewMessage += OnNewMessage;
 
             _logger.Trace("Checking commandline arguments...");
-            if (args.Any(a => a.ToLower() == "--startup"))
+            if (args.Any(a => a.ToLower() == "--startup") || !Settings.EnableAppList)
             {
-                _logger.Info("Detected '--startup' commandline. Starting application in Tray only");
+                _logger.Info("Detected '--startup' commandline or EnableAppList is set to false. Starting application in Tray only");
                 StartUp = true;
                 // create handles
                 var handle = FormAppList.Handle;
@@ -422,9 +435,8 @@ namespace DeploymentToolkit.TrayApp
             _logger.Info("Close requested from TrayIcon. Closing...");
             try
             {
-                FormAppList.Close();
-                FormAppList.Dispose();
-                TrayIcon.Dispose();
+                FormAppList?.Dispose();
+                TrayIcon?.Dispose();
             }
             catch (Exception ex)
             {

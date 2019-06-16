@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using DeploymentToolkit.Util;
+using NLog;
 using System;
 using System.Drawing;
 using System.IO;
@@ -10,7 +11,37 @@ namespace DeploymentToolkit.TrayApp.Extensions
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public static void AddLogo(this Form form, PictureBox logo)
+        public static void ApplySettings(this Form form, PictureBox logo)
+        {
+            ApplyLogo(form, logo);
+
+            var settings = Program.Settings;
+            if (!string.IsNullOrEmpty(settings.BackgroundColor))
+            {
+                var backgroundColor = settings.BackgroundColor;
+                _logger.Trace($"Trying to apply {backgroundColor}");
+
+                var color = ColorUtil.GetColor(backgroundColor);
+                if (color != default(Color))
+                {
+                    form.BackColor = color;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(settings.ForegroundColor))
+            {
+                var foregroundColor = settings.ForegroundColor;
+                _logger.Trace($"Trying to apply {foregroundColor}");
+
+                var color = ColorUtil.GetColor(foregroundColor);
+                if (color != default(Color))
+                {
+                    form.ForeColor = color;
+                }
+            }
+        }
+
+        public static void ApplyLogo(this Form form, PictureBox logo)
         {
             _logger.Trace("Searching for a Logo.png ...");
             if (File.Exists("Logo.png"))

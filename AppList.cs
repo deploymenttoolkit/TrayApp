@@ -33,7 +33,7 @@ namespace DeploymentToolkit.TrayApp
             // The name column should use the remaining empty space
             AppView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            this.AddLogo(PictureLogo);
+            this.ApplySettings(PictureLogo);
         }
 
         protected override void SetVisibleCore(bool value)

@@ -17,7 +17,7 @@ namespace DeploymentToolkit.TrayApp
         {
             _logger.Trace("Initializing components...");
             InitializeComponent();
-            this.AddLogo(PictureLogo);
+            this.ApplySettings(PictureLogo);
 
             _logger.Trace("Adding language...");
             var language = LanguageManager.Language;
