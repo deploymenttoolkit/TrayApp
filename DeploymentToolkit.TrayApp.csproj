@@ -32,6 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DeploymentToolkit.Logging">
       <HintPath>..\DeploymentToolkit.Logging\bin\Debug\DeploymentToolkit.Logging.dll</HintPath>
@@ -154,12 +160,15 @@
     <Content Include="Languages\UI_Messages_SV.xml" />
     <Content Include="Languages\UI_Messages_ZH-Hans.xml" />
     <Content Include="Languages\UI_Messages_ZH-Hant.xml" />
+    <Content Include="Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>taskkill /F /IM $(TargetFileName) 2&gt;nul &amp;set errorlevel=0</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)Languages" "$(TargetDir)Languages" /s /i /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)Languages" "$(TargetDir)Languages" /s /i /y
+
+xcopy "$(ProjectDir)Languages" "$(ProjectDir)..\DeploymentToolkit.Installer\Source\Languages" /s /i /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
