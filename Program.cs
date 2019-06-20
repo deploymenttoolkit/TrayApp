@@ -104,7 +104,7 @@ namespace DeploymentToolkit.TrayApp
             }
             catch (Exception ex)
             {
-                _logger.Fatal(ex, "Failed to create LanaugeManager. Exiting...");
+                _logger.Fatal(ex, "Failed to create LanguageManager. Exiting...");
                 Environment.Exit(-1);
             }
 
