@@ -116,11 +116,19 @@ namespace DeploymentToolkit.TrayApp
             FormAppList = new AppList();
 
             _logger.Trace("Creating TrayIcon...");
-            TrayIcon = new NotifyIcon
+            try
             {
-                Icon = new Icon(SystemIcons.Shield, 40, 40),
-                Text = "DeploymentToolkit TrayApp"
-            };
+                TrayIcon = new NotifyIcon
+                {
+                    Icon = new Icon("Tray.ico"),
+                    Text = "DeploymentToolkit TrayApp"
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.Fatal(ex, "Failed to create tray icon");
+                Environment.Exit(-2);
+            }
 
             _logger.Trace("Creating ContextMenu...");
             var contextMenu = new ContextMenu();
