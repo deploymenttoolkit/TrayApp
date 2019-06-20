@@ -317,6 +317,12 @@ namespace DeploymentToolkit.TrayApp
                                 TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
                                 TrayIcon.BalloonTipText = text;
                                 TrayIcon.ShowBalloonTip(10000);
+
+                                if (e.MessageId == MessageId.DeploymentSuccess || e.MessageId == MessageId.DeploymentError)
+                                {
+                                    // Enable exit again
+                                    MenuItemExit.Enabled = true;
+                                }
                             });
                         }
                         break;
