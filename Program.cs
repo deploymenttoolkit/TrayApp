@@ -76,8 +76,11 @@ namespace DeploymentToolkit.TrayApp
             }
             catch (Exception ex)
             {
+#if DEBUG
                 Debug.WriteLine("Failed to initialize logging");
                 Debug.WriteLine(ex);
+#endif
+                MessageBox.Show($"Failed to initialize logging: {ex}");
 
                 Environment.Exit(-1);
             }
@@ -105,6 +108,7 @@ namespace DeploymentToolkit.TrayApp
             catch (Exception ex)
             {
                 _logger.Fatal(ex, "Failed to create LanguageManager. Exiting...");
+                MessageBox.Show($"Failed to initialize LanguageManager: {ex}");
                 Environment.Exit(-1);
             }
 

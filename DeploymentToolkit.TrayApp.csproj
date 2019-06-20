@@ -54,9 +54,6 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DeploymentToolkit.Logging">
-      <HintPath>..\DeploymentToolkit.Logging\bin\Debug\DeploymentToolkit.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="NLog">
       <HintPath>..\DeploymentToolkit.Logging\bin\Debug\NLog.dll</HintPath>
     </Reference>
@@ -136,6 +133,10 @@
     <ProjectReference Include="..\DeploymentToolkit.Deployment\DeploymentToolkit.Util\DeploymentToolkit.Util.csproj">
       <Project>{aebbe655-c600-4b78-8617-fa3921f33afa}</Project>
       <Name>DeploymentToolkit.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeploymentToolkit.Logging\DeploymentToolkit.Logging.csproj">
+      <Project>{8bce8c64-7c10-498f-beb2-8804b191aea7}</Project>
+      <Name>DeploymentToolkit.Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
