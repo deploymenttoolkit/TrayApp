@@ -485,7 +485,8 @@ namespace DeploymentToolkit.TrayApp
         internal static void HideAppList()
         {
             _logger.Trace("Executing HideAppList");
-            MenuItemToggleVisibility.Text = "Show";
+            if (Settings.EnableAppList)
+                MenuItemToggleVisibility.Text = "Show";
             FormAppList.Hide();
             _logger.Trace("Executed HideAppList");
         }
@@ -493,7 +494,8 @@ namespace DeploymentToolkit.TrayApp
         internal static void ShowAppList()
         {
             _logger.Trace("Executing ShowAppList");
-            MenuItemToggleVisibility.Text = "Hide";
+            if (Settings.EnableAppList)
+                MenuItemToggleVisibility.Text = "Hide";
             FormAppList.Show();
             _logger.Trace("Executed ShowAppList");
         }
