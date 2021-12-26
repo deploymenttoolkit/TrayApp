@@ -31,12 +31,12 @@ namespace DeploymentToolkit.TrayApp
 
         public static NotifyIcon TrayIcon;
 
-        public static MenuItem MenuItemExit;
-        public static MenuItem MenuItemToggleVisibility;
+        public static ToolStripMenuItem MenuItemExit;
+        public static ToolStripMenuItem MenuItemToggleVisibility;
 
         public static DeploymentInformationMessage DeploymentInformation;
 
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         private static string _namespace;
         internal static string Namespace
@@ -131,18 +131,18 @@ namespace DeploymentToolkit.TrayApp
             }
 
             _logger.Trace("Creating ContextMenu...");
-            var contextMenu = new ContextMenu();
+            var contextMenu = new ContextMenuStrip();
 
             if (Settings.EnableAppList)
             {
                 _logger.Trace("Creating Show MenuItem...");
-                MenuItemToggleVisibility = new MenuItem
+                MenuItemToggleVisibility = new ToolStripMenuItem
                 {
-                    Index = 0,
+                    
                     Text = "Show"
                 };
                 MenuItemToggleVisibility.Click += ToggleTrayAppClicked;
-                contextMenu.MenuItems.Add(MenuItemToggleVisibility);
+                contextMenu.Items.Add(MenuItemToggleVisibility);
             }
             else
             {
@@ -150,21 +150,19 @@ namespace DeploymentToolkit.TrayApp
             }
 
             _logger.Trace("Creating Close MenuItem...");
-            MenuItemExit = new MenuItem
+            MenuItemExit = new ToolStripMenuItem
             {
-                Index = 1,
                 Text = "Close"
             };
             MenuItemExit.Click += CloseTrayAppClicked;
-            contextMenu.MenuItems.Add(MenuItemExit);
+            contextMenu.Items.Add(MenuItemExit);
 
 #if DEBUG
             _logger.Trace("Creating debug MenuItems...");
 
             {
-                var item = new MenuItem()
+                var item = new ToolStripMenuItem()
                 {
-                    Index = 2,
                     Text = "DEBUG: View CloseApplication (cmd.exe)"
                 };
                 item.Click += delegate (object sender, EventArgs e)
@@ -173,13 +171,12 @@ namespace DeploymentToolkit.TrayApp
                     FormCloseApplication = new CloseApplication(new[] { "cmd.exe" }, 0);
                     ShowForm(FormCloseApplication);
                 };
-                contextMenu.MenuItems.Add(item);
+                contextMenu.Items.Add(item);
             }
 
             {
-                var item = new MenuItem()
+                var item = new ToolStripMenuItem()
                 {
-                    Index = 3,
                     Text = "DEBUG: View DeploymentDeferal"
                 };
                 item.Click += delegate (object sender, EventArgs e)
@@ -188,7 +185,7 @@ namespace DeploymentToolkit.TrayApp
                     FormDeploymentDeferal = new DeploymentDeferal(1, DateTime.Now.AddDays(7));
                     ShowForm(FormDeploymentDeferal);
                 };
-                contextMenu.MenuItems.Add(item);
+                contextMenu.Items.Add(item);
 
                 // Make sure this is never null as we may test dialogs
                 DeploymentInformation = new DeploymentInformationMessage()
@@ -204,35 +201,33 @@ namespace DeploymentToolkit.TrayApp
             }
 
             {
-                var item = new MenuItem()
+                var item = new ToolStripMenuItem()
                 {
-                    Index = 4,
                     Text = "DEBUG: Logoff"
                 };
                 item.Click += delegate (object sender, EventArgs e)
                 {
                     Util.PowerUtil.Logoff();
                 };
-                contextMenu.MenuItems.Add(item);
+                contextMenu.Items.Add(item);
             }
 
             {
-                var item = new MenuItem()
+                var item = new ToolStripMenuItem()
                 {
-                    Index = 5,
                     Text = "DEBUG: Restart"
                 };
                 item.Click += delegate (object sender, EventArgs e)
                 {
                     Util.PowerUtil.Restart();
                 };
-                contextMenu.MenuItems.Add(item);
+                contextMenu.Items.Add(item);
             }
 
 #endif
 
             _logger.Trace("Finishing TrayIcon...");
-            TrayIcon.ContextMenu = contextMenu;
+            TrayIcon.ContextMenuStrip = contextMenu;
             TrayIcon.Visible = true;
 
             _logger.Trace("Creating PipeServer...");
