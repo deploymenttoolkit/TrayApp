@@ -418,11 +418,7 @@ namespace DeploymentToolkit.TrayApp
 							MenuItemExit.Enabled = false;
 #endif
 
-							//if(FormRestart != null && !FormRestart.IsDisposed)
-							//	FormRestart.Dispose();
-
-							//FormRestart = new RestartDialog(message.TimeUntilForceRestart);
-							//ShowForm(FormRestart);
+							NavigateTo(new RestartPage(message.TimeUntilForceRestart));
 						});
 					}
 					break;
@@ -456,11 +452,7 @@ namespace DeploymentToolkit.TrayApp
 #endif
 						MainWindow.Dispatcher.Invoke(delegate ()
 						{
-							//if(FormCloseApplication != null && !FormCloseApplication.IsDisposed)
-							//	FormCloseApplication.Dispose();
-
-							//FormCloseApplication = new CloseApplication(message.ApplicationNames, message.TimeUntilForceClose);
-							//ShowForm(FormCloseApplication);
+							NavigateTo(new CloseApplications(message.ApplicationNames, message.TimeUntilForceClose));
 						});
 					}
 					break;
@@ -474,11 +466,7 @@ namespace DeploymentToolkit.TrayApp
 #endif
 						MainWindow.Dispatcher.Invoke(delegate ()
 						{
-							//if(FormDeploymentDeferal != null && !FormDeploymentDeferal.IsDisposed)
-							//	FormDeploymentDeferal.Dispose();
-
-							//FormDeploymentDeferal = new DeploymentDeferal(message.RemainingDays, message.DeadLine);
-							//ShowForm(FormDeploymentDeferal);
+							NavigateTo(new DeploymentDeferal(message.RemainingDays, message.DeadLine));
 						});
 					}
 					break;
@@ -590,10 +578,14 @@ namespace DeploymentToolkit.TrayApp
 		internal static void NavigateTo(Page page)
 		{
 			_logger.Info($"Navigating to {page.GetType().FullName}");
-			if(MainWindow.Visibility != Visibility.Visible)
+
+			if(CurrentPage != null)
 			{
-				MainWindow.Show();
+				_logger.Debug($"Already displaying page {CurrentPage.GetType().FullName}. Old page was not properly closed");
 			}
+
+			// Hide page for reconstruction
+			MainWindow.Visibility = Visibility.Hidden;
 
 			if(page is not IPageWindowSettings settings)
 			{
@@ -632,6 +624,9 @@ namespace DeploymentToolkit.TrayApp
 
 			MainWindow.Frame.Content = null;
 			MainWindow.Frame.NavigationService.Navigate(page);
+
+			// Show reconstructed page
+			MainWindow.Show();
 		}
 
 		internal static void Hide(Page page)
