@@ -1,27 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DeploymentToolkit.Modals.Settings.Tray;
+using DeploymentToolkit.TrayApp.Extensions;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DeploymentToolkit.TrayApp.Windows.Upgrades
 {
-    /// <summary>
-    /// Interaction logic for Scheduler.xaml
-    /// </summary>
-    public partial class Scheduler : Window
-    {
-        public Scheduler()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for Scheduler.xaml
+	/// </summary>
+	public partial class Scheduler : Page, IPageWindowSettings
+	{
+		public string PageName => "UpgradeSchedule";
+		public int? RequestedHeight => 450;
+		public int? RequestedWidth => 800;
+		public bool AllowMinimize => true;
+		public bool AllowClose => false;
+
+		private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+
+		public Scheduler()
+		{
+			_logger.Trace("Initializing ...");
+			InitializeComponent();
+
+			_logger.Trace("Applying theme ...");
+			this.ApplyButtonThemes(App.Settings.BrandingSettings.ButtonSettings, new[] { UpgradeButton, ScheduleButton, MinimizeButton });
+
+			_logger.Trace("Loading message ...");
+			using var document = File.Open("./Assets/Upgrade/en.rtf", FileMode.Open);
+			RichTextUpgradeMessage.Selection.Load(document, DataFormats.Rtf);
+		}
+
+		private void UpgradeButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void ScheduleButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+		{
+			App.MainWindow.WindowState = WindowState.Minimized;
+		}
+	}
 }

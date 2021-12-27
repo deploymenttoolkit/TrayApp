@@ -7,14 +7,14 @@ using System.Windows.Forms;
 
 namespace DeploymentToolkit.TrayApp
 {
-    public partial class AppList : Form
+	public partial class AppList : Form
     {
         public BindingSource BindingSource;
 
-        private List<App> _apps = new List<App>();
+        private readonly List<App> _apps = new List<App>();
         private List<DeferedDeployment> _deferedDeployments = new List<DeferedDeployment>();
 
-        private Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public AppList()
         {
@@ -71,17 +71,17 @@ namespace DeploymentToolkit.TrayApp
 
             BindingSource.Clear();
 
-            for (var i = 0; i < _deferedDeployments.Count; i++)
-            {
-                var deployment = _deferedDeployments[i];
-                BindingSource.Add(new App()
-                {
-                    ID = i,
-                    AppName = deployment.Name,
-                    RemainingDays = deployment.RemainingDays != -1 ? deployment.RemainingDays.ToString() : string.Empty,
-                    Deadline = deployment.Deadline != DateTime.MinValue ? deployment.Deadline.ToString() : string.Empty
-                });
-            }
+            //for (var i = 0; i < _deferedDeployments.Count; i++)
+            //{
+            //    var deployment = _deferedDeployments[i];
+            //    BindingSource.Add(new App()
+            //    {
+            //        ID = i,
+            //        AppName = deployment.Name,
+            //        RemainingDays = deployment.RemainingDays != -1 ? deployment.RemainingDays.ToString() : string.Empty,
+            //        Deadline = deployment.Deadline != DateTime.MinValue ? deployment.Deadline.ToString() : string.Empty
+            //    });
+            //}
         }
     }
 }
