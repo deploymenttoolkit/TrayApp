@@ -13,8 +13,7 @@
   <ClosePrompt_Message>Følgende programmer skal lukkes før installationen kan fortsætte.
 
 		Gem dit arbejde, luk programmerne og fortsæt.
-		Alternativt kan du gemme dit arbejde og trykke på "Luk Programmer".
-		</ClosePrompt_Message>
+		Alternativt kan du gemme dit arbejde og trykke på "Luk Programmer".</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>BEMÆRK: Programmet/Programmerne vil automatisk blive lukket om:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>Følgende applikation vil nu blive installeret:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>Du kan vælge at udsætte installationen indtil udsættelsesperioden udløber:</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>Installation</DeploymentType_Install>
   <DeploymentType_UnInstall>Afinstallation</DeploymentType_UnInstall>
+  <DeploymentType_Repair>Reparere</DeploymentType_Repair>
   <BalloonText_Start>startet.</BalloonText_Start>
   <BalloonText_Complete>færdig.</BalloonText_Complete>
   <BalloonText_RestartRequired>færdig. En genstart er nødvendig.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>ikke færdig.</BalloonText_FastRetry>
   <Progress_MessageInstall>Installation i gang. Vent venligst...</Progress_MessageInstall>
   <Progress_MessageUninstall>Afinstallation i gang. Vent venligst...</Progress_MessageUninstall>
+  <Progress_MessageRepair>Reparere i gang. Vent venligst...</Progress_MessageRepair>
   <BlockExecution_Message>Opstart af denne applikation er midlertidigt blokeret da en installationsproces er under afvikling.</BlockExecution_Message>
   <RestartPrompt_Title>Genstart Nødvendig</RestartPrompt_Title>
   <RestartPrompt_Message>For at færdiggøre installationen skal du genstarte din computer.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>Du bør venligst gemme dit arbejde og genstarte indenfor det givne tidsrum.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>Din computer vil automatisk blive genstartet når nedtællingen er færdig.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>Tid tilbage:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>Genstart Senere</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>Minimere</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>Genstart Nu</RestartPrompt_ButtonRestartNow>
 </Messages>

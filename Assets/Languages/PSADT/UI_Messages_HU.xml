@@ -10,10 +10,9 @@
   <ClosePrompt_ButtonDefer> Elhalaszt</ClosePrompt_ButtonDefer>
   <ClosePrompt_Message> Az alábbi programokat szíveskedjen bezárni, mielőtt a telepítés elkezdődik.
 
-		Kérjük mentse munkáját és a folytatáshoz zárja be a futó alkalmazásokat. 
+		Kérjük mentse munkáját és a folytatáshoz zárja be a futó alkalmazásokat.
 		Vagy
-		Kérjük mentse munkáját és kattintson a „Programok bezárása”-ra.
-		</ClosePrompt_Message>
+		Kérjük mentse munkáját és kattintson a „Programok bezárása”-ra.</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>Megjegyzés: a programok automatikusan bezárásra kerülnek,:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>A következő alkalmazások telepítésre kerülnek:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>A telepítést elhalaszthatja amíg a rendelkezésre álló idő lejár:</DeferPrompt_ExpiryMessage>
@@ -25,6 +24,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>Telepítés</DeploymentType_Install>
   <DeploymentType_UnInstall>Eltávolítás</DeploymentType_UnInstall>
+  <DeploymentType_Repair>Javítás</DeploymentType_Repair>
   <BalloonText_Start>elindult.</BalloonText_Start>
   <BalloonText_Complete>elkészült.</BalloonText_Complete>
   <BalloonText_RestartRequired>elkészült.Újraindítás szükséges.</BalloonText_RestartRequired>
@@ -32,12 +32,13 @@
   <BalloonText_FastRetry>nem lehet befejezni.</BalloonText_FastRetry>
   <Progress_MessageInstall>Telepítés folyamatban. Kérem várjon...</Progress_MessageInstall>
   <Progress_MessageUninstall>Eltávolítás folyamatban. Kérem várjon...</Progress_MessageUninstall>
+  <Progress_MessageRepair>Javítás folyamatban. Kérem várjon...</Progress_MessageRepair>
   <BlockExecution_Message> A következő alkalmazások blokkolva lesznek, annak érdekében hogy a telepítés problémamentesen végrehajtódjon.</BlockExecution_Message>
   <RestartPrompt_Title>Újraindítás szükséges</RestartPrompt_Title>
   <RestartPrompt_Message>A telepítés befejezéséhez a számítógépet újraindítása szükséges.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>Kérem mentse munkáját, és a megadott időn belül indítsa újra..</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>A hátralévő idő leteltével a számítógép újraindul.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>Hátralévő idő:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>Újraindítás később</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>Minimalizál</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>Újraindítás most</RestartPrompt_ButtonRestartNow>
 </Messages>

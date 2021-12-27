@@ -27,7 +27,7 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Windows\Deployment\AppList.cs" />
@@ -74,6 +74,9 @@
     <StartupObject>DeploymentToolkit.TrayApp.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Assets\Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.246501">
       <PrivateAssets>all</PrivateAssets>
@@ -83,7 +86,84 @@
   <ItemGroup>
     <Page Include="App.xaml" />
   </ItemGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(ProjectDir)Languages&quot; &quot;Languages&quot; /s /i /y&#xD;&#xA;xcopy &quot;$(ProjectDir)Languages&quot; &quot;$(ProjectDir)..\DeploymentToolkit.Installer\Source\Languages&quot; /s /i /y" />
-  </Target>
+  <ItemGroup>
+    <None Update="Assets\Languages\DE.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\EN.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_AR.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_CZ.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_DA.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_DE.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_EN.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_ES.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_FR.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_HE.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_HU.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_IT.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_JA.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_KO.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_NB.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_NL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_PL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_PT-BR.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_PT.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_RU.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_SK.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_SV.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_ZH-Hans.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Languages\PSADT\UI_Messages_ZH-Hant.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

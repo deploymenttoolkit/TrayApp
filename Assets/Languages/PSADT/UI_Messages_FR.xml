@@ -13,8 +13,7 @@
   <ClosePrompt_Message>Les programmes suivants doivent être fermés afin que l'installation s'initialise.
 
 		Merci de sauvegarder votre travail, fermer tous les programmes, et continuer.
-		Vous pouvez aussi sauvegarder votre travail puis cliquez sur « Fermer Programmes ».
-		</ClosePrompt_Message>
+		Vous pouvez aussi sauvegarder votre travail puis cliquez sur « Fermer Programmes ».</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>REMARQUE: Les programmes seront automatiquement fermés dans:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>L'application suivante est sur le point d'être installée:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>Vous pouvez choisir de reporter l'installation:</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>Installation</DeploymentType_Install>
   <DeploymentType_UnInstall>Désinstallation</DeploymentType_UnInstall>
+  <DeploymentType_Repair>Réparation</DeploymentType_Repair>
   <BalloonText_Start>en cours.</BalloonText_Start>
   <BalloonText_Complete>réussie.</BalloonText_Complete>
   <BalloonText_RestartRequired>réussie. Un redémarrage est requis.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>incomplète.</BalloonText_FastRetry>
   <Progress_MessageInstall>Installation en cours, merci de patienter...</Progress_MessageInstall>
   <Progress_MessageUninstall>Désinstallation en cours, merci de patienter...</Progress_MessageUninstall>
+  <Progress_MessageRepair>Réparation en cours, merci de patienter...</Progress_MessageRepair>
   <BlockExecution_Message>Le lancement de cette application a été temporairement bloqué afin qu'une autre installation puisse se terminer.</BlockExecution_Message>
   <RestartPrompt_Title>Redémarrage Requis</RestartPrompt_Title>
   <RestartPrompt_Message>Pour que l'installation soit compléte, vous devez redémarrer votre ordinateur.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>Merci de sauvegarder votre travail et de redémarrer avant que le temps spécifié ne soit écoulé.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>Votre ordinateur sera automatiquement redémarré à la fin du décompte.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>Temps restant:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>Redémarrer Plus Tard</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>Minimiser</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>Redémarrer Maintenant</RestartPrompt_ButtonRestartNow>
 </Messages>

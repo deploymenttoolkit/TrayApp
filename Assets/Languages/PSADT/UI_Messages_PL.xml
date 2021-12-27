@@ -13,8 +13,7 @@
   <ClosePrompt_Message>Następujące programy muszą zostać zamknięte przed rozpoczęciem instalacji.
 
 		Proszę zapisać wszystkie dokumenty i zamknąć programy, a następnie kliknąć przycisk „Kontynuuj”.
-		Alternatywnie zapisz wszystkie dokumenty i kliknij przycisk „Zamknij Programy”.
-		</ClosePrompt_Message>
+		Alternatywnie zapisz wszystkie dokumenty i kliknij przycisk „Zamknij Programy”.</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>UWAGA: Programy zostaną automatycznie zamknięte za:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>Zostanie zainstalowana następująca aplikacja:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>Instalacja może zostać przełożona na późniejszy termin.</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>Instalacja</DeploymentType_Install>
   <DeploymentType_UnInstall>Deinstalacja</DeploymentType_UnInstall>
+  <DeploymentType_Repair>Naprawa</DeploymentType_Repair>
   <BalloonText_Start>rozpoczęta.</BalloonText_Start>
   <BalloonText_Complete>zakończona.</BalloonText_Complete>
   <BalloonText_RestartRequired>zakończona. Wymagany jest restart komputera.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>nieukończona.</BalloonText_FastRetry>
   <Progress_MessageInstall>Trwa instalacja. Proszę czekać...</Progress_MessageInstall>
   <Progress_MessageUninstall>Trwa deinstalacja. Proszę czekać...</Progress_MessageUninstall>
+  <Progress_MessageRepair>Trwa naprawa. Proszę czekać...</Progress_MessageRepair>
   <BlockExecution_Message>Uruchomienie tej aplikacji zostało zablokowane na okres instalacji.</BlockExecution_Message>
   <RestartPrompt_Title>Wymagany Restart</RestartPrompt_Title>
   <RestartPrompt_Message>Aby instalacja została poprawnie ukończona wymagany jest restart komputera.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>Proszę zapisać wszystkie dokumenty i zrestartować komputer w wyznaczonym czasie.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>Komputer zostanie automatycznie zrestartowany po upływie wyznaczonego czasu.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>Pozostały czas do restartu automatycznego:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>Restartuj Później</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>Zminimalizować</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>Restartuj Teraz</RestartPrompt_ButtonRestartNow>
 </Messages>

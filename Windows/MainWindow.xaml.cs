@@ -19,9 +19,17 @@ namespace DeploymentToolkit.TrayApp.Windows
 			cfg.CreateMap<PageSettings, PageSettings>().ForAllMembers(o => o.Condition((source, destination, value) => value != null));
 		}).CreateMapper();
 
+		private readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+
 		public MainWindow()
 		{
+			_logger.Trace("Initializing ...");
 			InitializeComponent();
+
+			_logger.Trace("Setting language ...");
+			var language = LanguageManager.Language;
+			TextBlockCompanyBrandingText.Text = language.DTK_BrandingTitle;
+
 			ApplyDefaultTheme();
 		}
 

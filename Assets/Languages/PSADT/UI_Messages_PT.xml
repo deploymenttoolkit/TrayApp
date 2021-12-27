@@ -13,8 +13,7 @@
   <ClosePrompt_Message>Programas de seguir devem ser fechados antes que a instalação possa prosseguir.
 
 		Por favor, guarde o seu trabalho, feche os programas e em seguida continuar.
-		Como alternativa, salve seu trabalho e clique em "Fechar Programas".
-		</ClosePrompt_Message>
+		Como alternativa, salve seu trabalho e clique em "Fechar Programas".</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>NOTA: O programa será fechado automaticamente em:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>O seguinte aplicativo está prestes a ser instalado:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>Você pode optar por adiar a instalação até que expire o diferimento:</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>Instalação</DeploymentType_Install>
   <DeploymentType_UnInstall>Desinstalação</DeploymentType_UnInstall>
+  <DeploymentType_Repair>Reparação</DeploymentType_Repair>
   <BalloonText_Start>começou a.</BalloonText_Start>
   <BalloonText_Complete>completo.</BalloonText_Complete>
   <BalloonText_RestartRequired>completa. Uma reinicialização é necessária.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>não completar.</BalloonText_FastRetry>
   <Progress_MessageInstall>Instalação em andamento. Por favor aguarde...</Progress_MessageInstall>
   <Progress_MessageUninstall>Desinstalação em andamento. Por favor aguarde...</Progress_MessageUninstall>
+  <Progress_MessageRepair>Reparação em andamento. Por favor aguarde...</Progress_MessageRepair>
   <BlockExecution_Message>Lançar este aplicativo está temporariamente bloqueado para que possa concluir uma operação de instalação.</BlockExecution_Message>
   <RestartPrompt_Title>Reinicialização Necessária</RestartPrompt_Title>
   <RestartPrompt_Message>Em ordem para completar a instalação, você deve reiniciar seu computador.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>Por favor, salve o trabalho e reiniciar no tempo alocado.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>Seu computador será reiniciado automaticamente no final da contagem regressiva.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>Tempo restante:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>Reiniciar Mais Tarde</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>Minimizar</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>Reinicie Agora</RestartPrompt_ButtonRestartNow>
 </Messages>

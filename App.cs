@@ -106,7 +106,15 @@ namespace DeploymentToolkit.TrayApp
 			_logger.Trace("Creating LanguageManager...");
 			try
 			{
-				LanguageManager = new LanguageManager();
+				if(args.Any(a => a.ToLower() == "--force-lang"))
+				{
+					var language = args.FirstOrDefault((a) => a.Length == 2);
+					LanguageManager = new LanguageManager(language);
+				}
+				else
+				{
+					LanguageManager = new LanguageManager();
+				}
 			}
 			catch(Exception ex)
 			{

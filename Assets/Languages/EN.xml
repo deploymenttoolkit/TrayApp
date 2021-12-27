@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Messages>
+  <!-- General Messages -->
+  <!-- Title displayed in Taskbar and on the top left of the application -->
+  <WindowTitle>DeploymentToolkit</WindowTitle>
+  <!-- Title Displayed beside the Logo -->
+  <BrandingTitle>DTK Company</BrandingTitle>
+  
+  <!-- Upgrade Messages -->
+  <UpgradePrompt_ButtonStartNow>Upgrade now</UpgradePrompt_ButtonStartNow>
+  <UpgradePrompt_ButtonSchedule>Schedule</UpgradePrompt_ButtonSchedule>
+  <UpgradePrompt_ButtonMinimize>Minimize</UpgradePrompt_ButtonMinimize>
+</Messages>

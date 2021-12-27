@@ -13,8 +13,7 @@
   <ClosePrompt_Message>설치를 계속하려면 다음의 프로그램을 종료해야 합니다.
 
 		사용자 작업을 저장하고 프로그램을 종료한 후 계속하세요.
-		다른 방법으로는 사용자 작업을 저장하고 "프로그램 종료"를 클릭하세요.
-		</ClosePrompt_Message>
+		다른 방법으로는 사용자 작업을 저장하고 "프로그램 종료"를 클릭하세요.</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>참고: 프로그램이 자동으로 종료되는 경우:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>다음의 응용 프로그램을 설치합니다:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>지연 기간이 만료될 때까지 설치를 연기할 수 있습니다:</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>설치</DeploymentType_Install>
   <DeploymentType_UnInstall>제거</DeploymentType_UnInstall>
+  <DeploymentType_Repair>수리</DeploymentType_Repair>
   <BalloonText_Start>시작되었습니다.</BalloonText_Start>
   <BalloonText_Complete>완료되었습니다.</BalloonText_Complete>
   <BalloonText_RestartRequired>완료되었습니다. 재부팅이 필요합니다.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>완료되지 않았습니다.</BalloonText_FastRetry>
   <Progress_MessageInstall>설치 중입니다. 기다리세요...</Progress_MessageInstall>
   <Progress_MessageUninstall>제거 중입니다. 기다리세요...</Progress_MessageUninstall>
+  <Progress_MessageRepair>수리 중입니다. 기다리세요...</Progress_MessageRepair>
   <BlockExecution_Message>설치 작업을 완료할 수 있도록 응용 프로그램의 시작을 잠시 차단했습니다.</BlockExecution_Message>
   <RestartPrompt_Title>다시 시작해야 합니다</RestartPrompt_Title>
   <RestartPrompt_Message>설치를 완료하려면 컴퓨터를 다시 시작해야 합니다.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>사용자 작업을 저장하고 지정된 시간 이내에 다시 시작하세요.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>카운트다운이 종료되면 컴퓨터는 자동으로 다시 시작합니다.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>남은 시간:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>나중에 다시 시작</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>최소화</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>지금 다시 시작 </RestartPrompt_ButtonRestartNow>
 </Messages>

@@ -13,8 +13,7 @@
   <ClosePrompt_Message>Die folgenden Programme müssen geschlossen werden, bevor die Installation fortgesetzt werden kann.
 
 		Bitte speichern Sie Ihre Arbeit, schließen Sie die Programme und fahren Sie dann fort.
-		Alternativ können Sie Ihre Arbeit speichern und dann auf „Programme Schließen“ klicken.
-		</ClosePrompt_Message>
+		Alternativ können Sie Ihre Arbeit speichern und dann auf „Programme Schließen“ klicken.</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>HINWEIS: Diese Programme werden automatisch geschlossen:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>Die folgende Anwendung soll installiert werden:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>Sie können die Installation verzögern, bis die Rückstellung abläuft:</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>Installation</DeploymentType_Install>
   <DeploymentType_UnInstall>Deinstallation</DeploymentType_UnInstall>
+  <DeploymentType_Repair>Reparatur</DeploymentType_Repair>
   <BalloonText_Start>gestartet.</BalloonText_Start>
   <BalloonText_Complete>abgeschlossen.</BalloonText_Complete>
   <BalloonText_RestartRequired>abgeschlossen. Ein Neustart ist erforderlich.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>nicht abgeschlossen werden.</BalloonText_FastRetry>
   <Progress_MessageInstall>Installation wird durchgeführt. Bitte warten...</Progress_MessageInstall>
   <Progress_MessageUninstall>Deinstallation wird durchgeführt. Bitte warten...</Progress_MessageUninstall>
+  <Progress_MessageRepair>Reparatur wird durchgeführt. Bitte warten...</Progress_MessageRepair>
   <BlockExecution_Message>Das Starten dieser Anwendung(en) wurde vorübergehend blockiert, damit der Installationsvorgang erfolgreich durchgeführt werden kann.</BlockExecution_Message>
   <RestartPrompt_Title>Neustart Erforderlich</RestartPrompt_Title>
   <RestartPrompt_Message>Zum Abschluss der Installation müssen Sie Ihren Computer neu starten.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>Bitte speichern Sie Ihre Arbeit und starten Sie den Computer innerhalb der vorgegebenen Zeit neu.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>Am Ende des Countdowns wird Ihr Computer automatisch neu gestartet.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>Verbleibende Zeit:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>Später Neustarten</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>Minimieren</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>Jetzt Neustarten</RestartPrompt_ButtonRestartNow>
 </Messages>

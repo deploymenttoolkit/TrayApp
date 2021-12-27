@@ -13,8 +13,7 @@
   <ClosePrompt_Message>I seguenti programmi devono essere chiusi prima che l'installazione possa procedere.
 
 		Salvare il lavoro , chiudere i programmi, e poi continuare.
-		In alternativa, salvare il lavoro e fare clic su "Chiudi Programmi".
-		</ClosePrompt_Message>
+		In alternativa, salvare il lavoro e fare clic su "Chiudi Programmi".</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>NOTA: il programma(s) sarà chiuso automaticamente in:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>La seguente applicazione sta per essere installata:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>Si può decidere di posticipare l'installazione fino alla prossima richiesta automatica:</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>Installazione</DeploymentType_Install>
   <DeploymentType_UnInstall>Disinstallazione</DeploymentType_UnInstall>
+  <DeploymentType_Repair>Riparazione</DeploymentType_Repair>
   <BalloonText_Start>Iniziata.</BalloonText_Start>
   <BalloonText_Complete>Completata.</BalloonText_Complete>
   <BalloonText_RestartRequired>Completata. È necessario riavviare il computer.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>Non completata.</BalloonText_FastRetry>
   <Progress_MessageInstall>Installazione in corso. Attendere prego...</Progress_MessageInstall>
   <Progress_MessageUninstall>Disinstallazione in corso. Attendere prego...</Progress_MessageUninstall>
+  <Progress_MessageRepair>Riparazione in corso. Attendere prego...</Progress_MessageRepair>
   <BlockExecution_Message>L'esecuzione di questa applicazione è stata temporaneamente bloccata in modo che l'operazione di installazione possa essere completata.</BlockExecution_Message>
   <RestartPrompt_Title>Riavvio Richiesto</RestartPrompt_Title>
   <RestartPrompt_Message>Per completare l'installazione, è necessario riavviare il computer.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>Salvare il lavoro e riavviare entro il tempo assegnato.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>Il computer verrà riavviato automaticamente al termine del conto alla rovescia.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>Tempo rimanente:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>Riavvia Seguito</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>Minimizzare</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>Riavvia Ora</RestartPrompt_ButtonRestartNow>
 </Messages>

@@ -27,8 +27,18 @@ namespace DeploymentToolkit.TrayApp.Windows.Upgrades
 			_logger.Trace("Applying theme ...");
 			this.ApplyButtonThemes(App.Settings.BrandingSettings.ButtonSettings, new[] { UpgradeButton, ScheduleButton, MinimizeButton });
 
+			_logger.Trace("Setting language ...");
+			var language = LanguageManager.Language;
+			UpgradeButton.Content = language.UpgradePrompt_ButtonStartNow;
+			ScheduleButton.Content = language.UpgradePrompt_ButtonSchedule;
+			MinimizeButton.Content = language.UpgradePrompt_ButtonMinimize;
+
 			_logger.Trace("Loading message ...");
-			using var document = File.Open("./Assets/Upgrade/en.rtf", FileMode.Open);
+			if(string.IsNullOrEmpty(language.PathToUpgradeRtf))
+			{
+				throw new FileNotFoundException("No language found to display message in :(");
+			}
+			using var document = File.Open(language.PathToUpgradeRtf, FileMode.Open);
 			RichTextUpgradeMessage.Selection.Load(document, DataFormats.Rtf);
 		}
 

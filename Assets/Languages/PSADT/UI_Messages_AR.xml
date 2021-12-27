@@ -13,8 +13,7 @@
   <ClosePrompt_Message>يجب إغلاق البرامج التالية قبل التمكن من متابعة عملية التثبيت.
 
 		يرجى حفظ عملك، وإغلاق البرامج، ومن ثم المتابعة.
-		يمكنك بدلا من ذلك، حفظ عملك والنقر فوق "إغلاق البرامج".
-		</ClosePrompt_Message>
+		يمكنك بدلا من ذلك، حفظ عملك والنقر فوق "إغلاق البرامج".</ClosePrompt_Message>
   <ClosePrompt_CountdownMessage>ملاحظة: سيتم إغلاق البرنامج/البرامج بشكل تلقائي خلال:</ClosePrompt_CountdownMessage>
   <DeferPrompt_WelcomeMessage>التطبيق التالي على وشك التثبيت:</DeferPrompt_WelcomeMessage>
   <DeferPrompt_ExpiryMessage>بإمكانك اختيار تأجيل التثبيت إلى حين انتهاء صلاحية التأجيل:</DeferPrompt_ExpiryMessage>
@@ -26,6 +25,7 @@
   </WelcomePrompt_CustomMessage>
   <DeploymentType_Install>تثبيت</DeploymentType_Install>
   <DeploymentType_UnInstall>إزالة التثبيت</DeploymentType_UnInstall>
+  <DeploymentType_Repair>إصلاح</DeploymentType_Repair>
   <BalloonText_Start>بدأ.</BalloonText_Start>
   <BalloonText_Complete>تم.</BalloonText_Complete>
   <BalloonText_RestartRequired>تم. يجب إعادة تشغيل النظام.</BalloonText_RestartRequired>
@@ -33,12 +33,13 @@
   <BalloonText_FastRetry>غير مكتمل.</BalloonText_FastRetry>
   <Progress_MessageInstall>جاري التثبيت. يرجى الانتظار...</Progress_MessageInstall>
   <Progress_MessageUninstall>جارٍ إزالة التثبيت. يرجى الانتظار...</Progress_MessageUninstall>
+  <Progress_MessageRepair>جارٍ إصلاح. يرجى الانتظار...</Progress_MessageRepair>
   <BlockExecution_Message>تم تعطيل تشغيل هذا التطبيق مؤقتًا بحيث يمكن إكمال عملية التثبيت.</BlockExecution_Message>
   <RestartPrompt_Title>مطلوب إعادة التشغيل</RestartPrompt_Title>
   <RestartPrompt_Message>كي تكتمل عملية التثبيت، يجب عليك إعادة تشغيل حاسوبك.</RestartPrompt_Message>
   <RestartPrompt_MessageTime>يرجى حفظ عملك وإعادة التشغيل خلال الوقت المخصص.</RestartPrompt_MessageTime>
   <RestartPrompt_MessageRestart>ستتم إعادة تشغيل حاسوبك بشكل تلقائي عند نهاية العد التنازلي.</RestartPrompt_MessageRestart>
   <RestartPrompt_TimeRemaining>الزمن المتبقي:</RestartPrompt_TimeRemaining>
-  <RestartPrompt_ButtonRestartLater>إعادة التشغيل لاحقًا</RestartPrompt_ButtonRestartLater>
+  <RestartPrompt_ButtonRestartLater>تقليل</RestartPrompt_ButtonRestartLater>
   <RestartPrompt_ButtonRestartNow>إعادة التشغيل الآن</RestartPrompt_ButtonRestartNow>
 </Messages>

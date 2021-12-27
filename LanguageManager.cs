@@ -1,4 +1,5 @@
-﻿using DeploymentToolkit.Modals;
+﻿using AutoMapper;
+using DeploymentToolkit.Modals;
 using DeploymentToolkit.Util;
 using Microsoft.Win32;
 using NLog;
@@ -10,7 +11,7 @@ using System.Reflection;
 
 namespace DeploymentToolkit.TrayApp
 {
-    internal class LanguageManager
+	internal class LanguageManager
     {
         internal static Language Language;
 
@@ -19,8 +20,8 @@ namespace DeploymentToolkit.TrayApp
         private readonly string _twoLetterISOLanguageName;
         private readonly string _uiTwoLetterISOLanguageName;
 
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
-        private readonly string _languagesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Languages");
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly string _languagesMainPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets\\Languages");
 
         /// <summary>
         /// Key: Registry Path
@@ -50,7 +51,7 @@ namespace DeploymentToolkit.TrayApp
             }
         };
 
-        internal LanguageManager()
+        internal LanguageManager(string forceLanguage = null)
         {
             _logger.Trace("Initializing LanguageManager ...");
 
@@ -66,6 +67,12 @@ namespace DeploymentToolkit.TrayApp
 
             _logger.Trace("Reading prefered language from registry...");
             GetLanguageFromRegistry();
+
+			if(!string.IsNullOrEmpty(forceLanguage))
+			{
+				_logger.Debug($"Preferred language was {_languageName} but is now overwritten to {forceLanguage}");
+				_languageName = forceLanguage;
+			}
 
             _logger.Trace($"Trying to use {_languageName} as language...");
             try
@@ -101,7 +108,7 @@ namespace DeploymentToolkit.TrayApp
                 _languageName = "EN";
             }
 
-            var filePath = Path.Combine(_languagesPath, $"UI_Messages_{_languageName}.xml");
+            var filePath = Path.Combine(_languagesMainPath, $"{_languageName}.xml");
             _logger.Trace($"Searching for language ({filePath})");
             if (File.Exists(filePath))
             {
@@ -112,7 +119,7 @@ namespace DeploymentToolkit.TrayApp
                 _logger.Warn($"Failed to find language {_languageName}. Reverting to EN");
 
                 _languageName = "EN";
-                filePath = Path.Combine(_languagesPath, $"UI_Messages_EN.xml");
+                filePath = Path.Combine(_languagesMainPath, $"EN.xml");
                 if (!File.Exists(filePath))
                     throw new FileNotFoundException(filePath);
                 else
@@ -127,7 +134,42 @@ namespace DeploymentToolkit.TrayApp
             try
             {
                 Language = Xml.ReadXml<Language>(filePath);
-                _logger.Info($"Successfully loaded language files for {_languageName}");
+
+				var psadtPath = Path.Combine(Path.GetDirectoryName(filePath), $"PSADT\\UI_Messages_{_languageName}.xml");
+				if(File.Exists(psadtPath))
+				{
+					_logger.Debug($"Loading PSADT Language file from '{psadtPath}'");
+
+					var psadtLanguage = Xml.ReadXml<Language>(psadtPath);
+
+					var mapper = new MapperConfiguration(cfg =>
+					{
+						cfg.CreateMap<Language, Language>().ForAllMembers(o => o.Condition((source, destination, value) => value != null));
+					}).CreateMapper();
+
+					Language = mapper.Map(psadtLanguage, Language);
+				}
+
+				var upgradePath = Path.Combine(Path.GetDirectoryName(filePath), $"Upgrade\\{_languageName}.rtf");
+				if(!File.Exists(upgradePath))
+				{
+					upgradePath = Path.Combine(Path.GetDirectoryName(filePath), $"Upgrade\\EN.rtf");
+					if(!File.Exists(upgradePath))
+					{
+						_logger.Warn("Found no language and no fallback language windows upgrade RTF file. This can be ignored if DTK is not used for Windows Upgrades");
+					}
+					else
+					{
+						Language.PathToUpgradeRtf = upgradePath;
+					}
+				}
+				else
+				{
+					Language.PathToUpgradeRtf = upgradePath;
+				}
+				_logger.Trace($"PathToUpgradeRtf: {upgradePath}");
+
+				_logger.Info($"Successfully loaded language files for {_languageName}");
             }
             catch (Exception ex)
             {

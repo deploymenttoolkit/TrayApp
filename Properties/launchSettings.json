@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "TrayApp Startup": {
+      "commandName": "Project",
+      "commandLineArgs": "--startup"
+    },
+    "TrayApp Force DE": {
+      "commandName": "Project",
+      "commandLineArgs": "--startup --force-lang DE",
+      "authenticationMode": "Windows"
+    }
+  }
+}
