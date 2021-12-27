@@ -414,8 +414,8 @@ namespace DeploymentToolkit.TrayApp
 						MainWindow.Dispatcher.Invoke(delegate ()
 						{
 #if !DEBUG
-                                // Disable exit of the program
-                                MenuItemExit.Enabled = false;
+							// Disable exit of the program
+							MenuItemExit.Enabled = false;
 #endif
 
 							//if(FormRestart != null && !FormRestart.IsDisposed)
@@ -451,8 +451,8 @@ namespace DeploymentToolkit.TrayApp
 					{
 						var message = e.Message as CloseApplicationsMessage;
 #if !DEBUG
-                            // Disable exit of the program
-                            MenuItemExit.Enabled = false;
+						// Disable exit of the program
+						MenuItemExit.Enabled = false;
 #endif
 						MainWindow.Dispatcher.Invoke(delegate ()
 						{
@@ -469,8 +469,8 @@ namespace DeploymentToolkit.TrayApp
 					{
 						var message = e.Message as DeferMessage;
 #if !DEBUG
-                            // Disable exit of the program
-                            MenuItemExit.Enabled = false;
+                        // Disable exit of the program
+                        MenuItemExit.Enabled = false;
 #endif
 						MainWindow.Dispatcher.Invoke(delegate ()
 						{
