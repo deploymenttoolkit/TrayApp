@@ -585,7 +585,7 @@ namespace DeploymentToolkit.TrayApp
 			}
 
 			// Hide page for reconstruction
-			MainWindow.Visibility = Visibility.Hidden;
+			MainWindow.Hide();
 
 			if(page is not IPageWindowSettings settings)
 			{
