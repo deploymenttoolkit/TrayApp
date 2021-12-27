@@ -641,6 +641,7 @@ namespace DeploymentToolkit.TrayApp
 		{
 			_logger.Info($"Hiding by request of {page.GetType().FullName}");
 
+			MainWindow.Frame.Content = null;
 			CurrentPage = null;
 
 			// We may not be comming from a GUI thread here

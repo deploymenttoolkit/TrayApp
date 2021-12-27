@@ -280,5 +280,13 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 			});
 			App.Hide(this);
 		}
+
+		private void Page_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+		{
+			_checkApplicationsTimer?.Stop();
+			_checkApplicationsTimer?.Dispose();
+			_forceCloseTimer?.Stop();
+			_forceCloseTimer?.Dispose();
+		}
 	}
 }

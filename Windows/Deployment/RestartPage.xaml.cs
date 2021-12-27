@@ -103,5 +103,11 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 				DeploymentStep = Modals.DeploymentStep.Restart
 			});
 		}
+
+		private void Page_Unloaded(object sender, RoutedEventArgs e)
+		{
+			_restartTimer?.Stop();
+			_restartTimer?.Dispose();
+		}
 	}
 }
