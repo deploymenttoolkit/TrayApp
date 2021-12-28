@@ -10,4 +10,12 @@
   <UpgradePrompt_ButtonStartNow>Upgrade now</UpgradePrompt_ButtonStartNow>
   <UpgradePrompt_ButtonSchedule>Schedule</UpgradePrompt_ButtonSchedule>
   <UpgradePrompt_ButtonMinimize>Minimize</UpgradePrompt_ButtonMinimize>
+  
+  <!-- Upgrade Schedule Dialog -->
+  <UpgradePrompt_ButtonConfirm>Confirm</UpgradePrompt_ButtonConfirm>
+  <UpgradePrompt_ButtonCancel>Cancel</UpgradePrompt_ButtonCancel>
+  <UpgradePrompt_ScheduleTitle>Schedule the upgrade</UpgradePrompt_ScheduleTitle>
+  <UpgradePrompt_ScheduleOptionOne>I want to manually start the upgrade (reminder on the specified time)</UpgradePrompt_ScheduleOptionOne>
+  <UpgradePrompt_ScheduleOptionTwo>I want to automatically start the upgrade</UpgradePrompt_ScheduleOptionTwo>
+  <UpgradePrompt_ScheduleReminder>Please make sure the device is plugged in and connected to the network</UpgradePrompt_ScheduleReminder>
 </Messages>

@@ -49,7 +49,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Upgrades
 
 		private void ScheduleButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			App.NavigateTo(new DateTimePicker());
 		}
 
 		private void MinimizeButton_Click(object sender, RoutedEventArgs e)
