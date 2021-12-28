@@ -11,33 +11,36 @@ namespace DeploymentToolkit.TrayApp.Extensions
 	{
 		private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
-		private static readonly IMapper _buttonMapper = new MapperConfiguration(cfg =>
+		private static readonly IMapper _defaultMapper = new MapperConfiguration(cfg =>
 		{
 			cfg.CreateMap<DefaultButtonSettings, ButtonSettings>();
 			cfg.CreateMap<ButtonSettings, ButtonSettings>().ForAllMembers(o => o.Condition((source, destination, value) => value != null));
-		}).CreateMapper();
-
-		private static readonly IMapper _textBlockMapper = new MapperConfiguration(cfg =>
-		{
 			cfg.CreateMap<DefaultTextBlockSettings, TextBlockSettings>();
 			cfg.CreateMap<TextBlockSettings, TextBlockSettings>().ForAllMembers(o => o.Condition((source, destination, value) => value != null));
 		}).CreateMapper();
+
+		private static T2 MergeSettings<T1, T2>(T1 defaultSettings, string controlName)
+		{
+			// Merge default settings
+			var mergedSettings = _defaultMapper.Map<T2>(defaultSettings);
+			// Get settings
+			var controlConfig = defaultSettings.GetType().GetProperties().FirstOrDefault(c => c.Name == controlName);
+			if(controlConfig != null)
+			{
+				var instance = (T2)controlConfig.GetValue(defaultSettings);
+				if(instance != null)
+				{
+					mergedSettings = _defaultMapper.Map(instance, mergedSettings);
+				}
+			}
+			return mergedSettings;
+		}
 
 		public static void ApplyButtonThemes(this Page page, DefaultButtonSettings settings, Button[] buttons)
 		{
 			foreach(var button in buttons)
 			{
-				var buttonSettings = _buttonMapper.Map<ButtonSettings>(settings);
-
-				var buttonConfig = settings.GetType().GetProperties().FirstOrDefault(p => p.Name == button.Name);
-				if(buttonConfig != null)
-				{
-					var instance = (ButtonSettings)buttonConfig.GetValue(settings);
-					if(instance != null)
-					{
-						buttonSettings = _buttonMapper.Map(instance, buttonSettings);
-					}
-				}
+				var buttonSettings = MergeSettings<DefaultButtonSettings, ButtonSettings>(settings, button.Name);
 
 				if(buttonSettings.Height.HasValue)
 				{
@@ -74,17 +77,7 @@ namespace DeploymentToolkit.TrayApp.Extensions
 		{
 			foreach(var textBlock in textBlocks)
 			{
-				var textBlockSettings = _textBlockMapper.Map<TextBlockSettings>(settings);
-
-				var textBlockConfig = settings.GetType().GetProperties().FirstOrDefault(p => p.Name == textBlock.Name);
-				if(textBlockConfig != null)
-				{
-					var instance = (TextBlockSettings)textBlockConfig.GetValue(settings);
-					if(instance != null)
-					{
-						textBlockSettings = _textBlockMapper.Map(instance, textBlockSettings);
-					}
-				}
+				var textBlockSettings = MergeSettings<DefaultTextBlockSettings, TextBlockSettings>(settings, textBlock.Name);
 
 				if(!string.IsNullOrEmpty(textBlockSettings.FontColor))
 				{
