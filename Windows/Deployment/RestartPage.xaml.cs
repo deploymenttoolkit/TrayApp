@@ -29,7 +29,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 			_logger.Trace("Initializing ...");
 			InitializeComponent();
 
-			_logger.Trace("Applying theme ..."); 
+			_logger.Trace("Applying theme ...");
 			this.ApplyButtonThemes(App.Settings.BrandingSettings.ButtonSettings, new[] { RestartNowButton, RestartLaterButton });
 			this.ApplyTextBlockThemes(App.Settings.BrandingSettings.TextBlockSettings, new[] { RestartTopTextBlock, RestartMiddleTextBlock, RestartBottomTextBlock });
 
@@ -38,7 +38,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 			RestartNowButton.Content = language.RestartPrompt_ButtonRestartNow;
 			RestartLaterButton.Content = language.RestartPrompt_ButtonRestartLater;
 			RestartTopTextBlock.Text = language.RestartPrompt_Message;
-			
+
 			if(timeUntilForcedRestart > 0)
 			{
 				_logger.Trace($"{timeUntilForcedRestart} seconds until forced restart");
@@ -72,8 +72,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 			}
 			else
 			{
-				Dispatcher.Invoke(delegate ()
-				{
+				Dispatcher.Invoke(delegate () {
 					RestartBottomTextBlock.Text = $"{LanguageManager.Language.RestartPrompt_TimeRemaining}\n{_restartRemainingSeconds}";
 				});
 			}

@@ -39,8 +39,15 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 		private ObservableCollection<RunningProcess> _runningApplications = new();
 		public ObservableCollection<RunningProcess> RunningApplications
 		{
-			get => _runningApplications;
-			set => _runningApplications = value;
+			get
+			{
+				return _runningApplications;
+			}
+
+			set
+			{
+				_runningApplications = value;
+			}
 		}
 
 		private readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
@@ -63,7 +70,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 			_logger.Trace("Applying theme ...");
 			this.ApplyButtonThemes(App.Settings.BrandingSettings.ButtonSettings, new[] { CloseApplicationsButton, CloseApplicationsContinueButton });
 			this.ApplyTextBlockThemes(App.Settings.BrandingSettings.TextBlockSettings, new[] { CloseApplicationsTopTextBlock, CloseApplicationsBottomTextBlock });
-			
+
 			_applicationList = applications;
 			DataContext = this;
 			CloseApplicationsListView.ItemsSource = RunningApplications;
@@ -212,8 +219,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 			_checkApplicationsTimer.Stop();
 			_forceCloseTimer?.Stop();
 
-			Task.Run(delegate
-			{
+			Task.Run(delegate {
 				foreach(var application in _applicationList)
 				{
 					try
@@ -254,8 +260,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 						_logger.Error(ex, $"Error while processing {application}");
 					}
 				}
-			}).ContinueWith(delegate (Task task)
-			{
+			}).ContinueWith(delegate (Task task) {
 				App.SendMessage(new ContinueMessage()
 				{
 					DeploymentStep = DeploymentStep.CloseApplications

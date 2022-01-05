@@ -44,7 +44,7 @@ namespace DeploymentToolkit.TrayApp.Windows
 			ImageCompanyBrandingLogo.Source = System.Windows.Media.Imaging.BitmapFrame.Create(path);
 
 			var pageSettings = _pageMapper.Map<PageSettings>(App.Settings.PageSettings);
-			if (settings is PageSettings customPageSettings)
+			if(settings is PageSettings customPageSettings)
 			{
 				pageSettings = _pageMapper.Map(customPageSettings, pageSettings);
 			}

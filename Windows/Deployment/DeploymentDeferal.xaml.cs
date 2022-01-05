@@ -27,7 +27,7 @@ namespace DeploymentToolkit.TrayApp.Windows.Deployment
 
 			_logger.Trace("Applying theme ...");
 			this.ApplyButtonThemes(App.Settings.BrandingSettings.ButtonSettings, new[] { DeferButton, ContinueButton });
-			this.ApplyTextBlockThemes(App.Settings.BrandingSettings.TextBlockSettings, new [] { DeferalTopTextBlock, DeferalMiddleTextBlock, DeferalBottomTextBlock });
+			this.ApplyTextBlockThemes(App.Settings.BrandingSettings.TextBlockSettings, new[] { DeferalTopTextBlock, DeferalMiddleTextBlock, DeferalBottomTextBlock });
 
 			_logger.Trace("Setting languages...");
 			var language = LanguageManager.Language;

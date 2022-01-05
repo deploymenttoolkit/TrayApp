@@ -400,8 +400,7 @@ namespace DeploymentToolkit.TrayApp
 						_logger.Trace($"Icon: {icon}");
 						_logger.Trace($"Final balloon tip text: {text}");
 
-						MainWindow.Dispatcher.Invoke(delegate ()
-						{
+						MainWindow.Dispatcher.Invoke(delegate () {
 							TrayIcon.BalloonTipIcon = icon;
 							TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
 							TrayIcon.BalloonTipText = text;
@@ -419,8 +418,7 @@ namespace DeploymentToolkit.TrayApp
 					case MessageId.DeploymentRestart:
 					{
 						var message = e.Message as DeploymentRestartMessage;
-						MainWindow.Dispatcher.Invoke(delegate ()
-						{
+						MainWindow.Dispatcher.Invoke(delegate () {
 #if !DEBUG
 							// Disable exit of the program
 							MenuItemExit.Enabled = false;
@@ -435,8 +433,7 @@ namespace DeploymentToolkit.TrayApp
 					{
 						var message = e.Message as DeploymentLogoffMessage;
 
-						MainWindow.Dispatcher.Invoke(delegate ()
-						{
+						MainWindow.Dispatcher.Invoke(delegate () {
 							TrayIcon.BalloonTipIcon = Forms.ToolTipIcon.Warning;
 							TrayIcon.BalloonTipTitle = DeploymentInformation.DeploymentName;
 							TrayIcon.BalloonTipText = $"You will be logged off in {message.TimeUntilForceLogoff} seconds";
@@ -458,8 +455,7 @@ namespace DeploymentToolkit.TrayApp
 						// Disable exit of the program
 						MenuItemExit.Enabled = false;
 #endif
-						MainWindow.Dispatcher.Invoke(delegate ()
-						{
+						MainWindow.Dispatcher.Invoke(delegate () {
 							NavigateTo(new CloseApplications(message.ApplicationNames, message.TimeUntilForceClose));
 						});
 					}
@@ -472,8 +468,7 @@ namespace DeploymentToolkit.TrayApp
                         // Disable exit of the program
                         MenuItemExit.Enabled = false;
 #endif
-						MainWindow.Dispatcher.Invoke(delegate ()
-						{
+						MainWindow.Dispatcher.Invoke(delegate () {
 							NavigateTo(new DeploymentDeferal(message.RemainingDays, message.DeadLine));
 						});
 					}
@@ -560,16 +555,22 @@ namespace DeploymentToolkit.TrayApp
 			//}
 
 			if(MenuItemToggleVisibility.Text == "Show")
+			{
 				ShowAppList();
+			}
 			else
+			{
 				HideAppList();
+			}
 		}
 
 		internal static void HideAppList()
 		{
 			_logger.Trace("Executing HideAppList");
 			if(Settings.EnableAppList)
+			{
 				MenuItemToggleVisibility.Text = "Show";
+			}
 			//FormAppList.Hide();
 			_logger.Trace("Executed HideAppList");
 		}
@@ -578,7 +579,9 @@ namespace DeploymentToolkit.TrayApp
 		{
 			_logger.Trace("Executing ShowAppList");
 			if(Settings.EnableAppList)
+			{
 				MenuItemToggleVisibility.Text = "Hide";
+			}
 			//FormAppList.Show();
 			_logger.Trace("Executed ShowAppList");
 		}
